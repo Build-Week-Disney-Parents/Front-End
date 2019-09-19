@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Form, Field, withFormik } from 'formik';
 import * as yup from 'yup';
 import styled from 'styled-components';
@@ -10,38 +11,64 @@ const Login = ({ errors, touched, status }) => {
     const [values, setValues] = useState([]);
 
     const Wrapper = styled.div`
-        width: 100%;
+        width: 400px;
         text-align: center;
+        margin: 0 auto;
     `
     const Title = styled.h1`
         font-size: 3rem;
         font-weight: 300;
     `
     const SubmitButton = styled.button`
-        padding: 10px 80px;
+        padding: 10px 0;
+        width: 100%;
         text-align: center;
         align-self: flex-start;
         background: ${primary1};
         color: white;
         font-size: 1.2rem;
         margin-top: 10px;
+        border-radius: 10px;
     `
+    const Input = styled.input`
+        align-self: flex-start;
+        width: 97%;
+        margin-top: 10px;
+        padding: 10px 5px;
+        font-size: 1.2rem;
+        background: transparent;
+        border: 1px solid black;
+        border-radius: 10px;
+        color: black;
+    `
+    const SignupText = styled.div`
+        margin-top: 10px;
+    `
+
+
+    
 
     return (
         <Wrapper>
-            <Title>Login</Title>
             <Form style={{
                 display: 'flex',
                 flexFlow: 'Column Wrap',
                 alignContent: 'center',
                 }}>
                 {touched.email && errors.email && <p className='error'>{errors.email}</p>}
-                <Field type='email' name='email' placeholder='Email' style={{alignSelf: 'flex-start'}} />
+                <Input type='email' name='email' placeholder='Email' />
 
                 {touched.password && errors.password && <p className='error'>{errors.password}</p>}
-                <Field type='password' name='password' placeholder='Password' style={{alignSelf: 'flex-start'}} />
+                <Input type='password' name='password' placeholder='Password' />
 
-                <SubmitButton type='submit' style={{alignSelf: 'flex-start'}}>Submit</SubmitButton>
+                <label style={{marginTop: '10px', alignSelf: 'flex-start'}}>
+                    <Field type='checkbox' name='remember' />
+                    <span style={{fontSize: '.8rem'}}>Remember Me?</span>
+                </label>
+                <SubmitButton type='submit'>Login</SubmitButton>
+                <SignupText>
+                    <Link to='/signup'>Don't have an account? Signup now!</Link>
+                </SignupText>
             </Form>
         </Wrapper>
         
@@ -52,7 +79,8 @@ export default withFormik({
     mapPropsToValues: (values) => {
         return {
             email: values.email || '',
-            password: values.password || ''
+            password: values.password || '',
+            remember: values.rememer || false
         }
     },
     validationSchema: yup.object().shape({
