@@ -1,8 +1,8 @@
 import React from 'react';
 import Login from './Components/Login';
-import Queue from './Components/QueueList';
-import Parks  from './Components/Parent';
-
+import Signup from './Components/Signup';
+import Welcome from './Components/Welcome';
+import { Route } from 'react-router-dom';
 
 
 function App() {
@@ -10,6 +10,11 @@ function App() {
     <div>
       <Parks />
     </div>
+    <main>
+      <Welcome />
+      <Route exact path='/' component={Login} />
+      <Route path='/signup' component={Signup} />
+    </main>
   )
 }
 
