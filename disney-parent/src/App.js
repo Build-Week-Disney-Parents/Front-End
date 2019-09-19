@@ -7,6 +7,9 @@ import { Route } from 'react-router-dom';
 
 function App() {
   return (
+    <div>
+      <Parks />
+    </div>
     <main>
       <Welcome />
       <Route exact path='/' component={Login} />
