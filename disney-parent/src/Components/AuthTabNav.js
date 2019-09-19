@@ -6,9 +6,7 @@ const Nav = props => <NavLink exact {...props} activeClassName='active' />
 const panes = [
     {
         menuItem: (
-            <Menu.Item key='signup' as={Nav} to={'/'}>
-                Signup
-            </Menu.Item>
+            <Menu.Item key='signup' as={Nav} to={'/signup'}>Signup</Menu.Item>
         )
     },
     {
