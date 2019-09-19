@@ -1,10 +1,20 @@
 import React from 'react';
+import { Form, Field, withFormik } from 'formik';
+import * as yup from 'yup';
 
-export default function Login() {
+const Login = () => {
     return (
-        <>
-            <h1>this is the login form</h1>
-            <p>stuff</p>
-        </>
+        <div>
+
+        </div>
     )
 }
+
+export default withFormik({
+    handleSubmit: (values, { setSubmitting }) => {
+        console.log('submitted Email:', values.email)
+        console.log('submitted password:', values.password)
+        setTimeout(() => setSubmitting(false, 3 * 1000))
+    },
+    validationSchema: LoginValidation,
+})(Login);
