@@ -11,10 +11,14 @@ const Login = ({ errors, touched, status }) => {
         width: 100%;
         text-align: center;
     `
+    const Title = styled.h1`
+        font-size: 3rem;
+        font-weight: 300;
+    `
 
     return (
         <Wrapper>
-            <h1>Login</h1>
+            <Title>Login</Title>
             <Form>
                 {touched.email && errors.email && <p className='error'>{errors.email}</p>}
                 <Field type='email' name='email' placeholder='Email' />

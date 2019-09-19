@@ -1,6 +1,8 @@
 import React from 'react';
 import { Tab, Menu } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+import './Tab.scss'
 
 const Nav = props => <NavLink exact {...props} activeClassName='active' />
 const panes = [
@@ -16,5 +18,13 @@ const panes = [
     }
 ];
 
-const AuthTabNav = () => <Tab panes={panes} renderActiveOnly={false} />;
+
+
+const AuthTabNav = () => {
+    return (
+        <div className='wrapper'>
+            <Tab panes={panes} renderActiveOnly={false} />
+        </div>
+    )
+} 
 export default AuthTabNav;
