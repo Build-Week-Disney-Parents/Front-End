@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Axios from 'axios';
+import Parks from "./Parent";
 
 
 
 
-function Queue() {
+function Queue(props) {
 // const[name, email, park, pass, time_slot] = data;
+console.log(props)
 const[users, setUsers] = useState([
     {
         "id": 1,
@@ -117,10 +119,24 @@ const[users, setUsers] = useState([
     }
 ]);
 
+const magicKingdom = users.filter(user => {
+    return user.park === "Magic Kingdom"
+})
+const animalKingdom = users.filter(user => {
+    return user.park === "Animal Kingdom"
+})
+const hollywoodStudios = users.filter(user => {
+    return user.park === "Hollywood Studios"
+})
+const epcot = users.filter(user => {
+    return user.park === "Epcot"
+})
+
 
     return(
         <section>
             <div>
+                <Parks animalKingdom={animalKingdom} epcot={epcot} hollywoodStudios={hollywoodStudios} magicKingdom={magicKingdom}/>
                 {users.map(user => (
                     <QueueCard key={user.id} person={user} />
                 ))}
@@ -140,5 +156,5 @@ function QueueCard(props) {
         </div>
     )
 }
-export default Queue
+export default { QueueCard }
 
