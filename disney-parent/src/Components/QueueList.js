@@ -127,7 +127,7 @@ const buttonText = [
     'Epcot'
 ]
 
-const [parkState, setParkState] = useState('Magic Kingdom');
+const [parkState, setParkState] = useState('All Parks');
 
 console.log(parkState)
 
@@ -158,16 +158,16 @@ function QueueCard(props) {
     const parks = props.parkState
     console.log(parks)
 
-    if (parks != people.park) {
+    if (parks === 'All Parks') {
         return (
-            <div style={{display: 'none'}}>
+            <div >
                 <h1>{ people.name }</h1>
                 <span>{people.email} {people.park} {people.pass} {people.time_slot} </span>
             </div>
         )
-    } else if (parks === people && parks != 'All Parks') {
+    } else if (parks != people.park) {
         return (
-            <div>
+            <div style={{display: 'none'}}>
                 <h1>{ people.name }</h1>
                 <span>{people.email} {people.park} {people.pass} {people.time_slot} </span>
             </div>
