@@ -3,6 +3,12 @@ import Axios from 'axios';
 import { Button } from "semantic-ui-react";
 import styled from 'styled-components';
 
+const BtnWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+`
+
 
 
 
@@ -138,9 +144,12 @@ console.log(parkState)
     return(
         <section>
             <div>
-                {buttonText.map(text => (
-                    <Parks key={text.id} text={text} setParkState={setParkState} />
-                ))}
+                <BtnWrapper>
+                    {buttonText.map(text => (
+                        <Parks key={text.id} text={text} setParkState={setParkState} />
+                    ))}
+                </BtnWrapper>
+                
                 {users.map((user) => {
                     return (
                     <QueueCard key={user.id} person={user} parkState={parkState} />
@@ -156,7 +165,6 @@ function QueueCard(props) {
     // const[name, email, park, pass, time_slot] = person;
     const people = props.person
     const parks = props.parkState
-    console.log(parks)
 
     if (parks === 'All Parks') {
         return (
@@ -182,6 +190,8 @@ function QueueCard(props) {
         )
     } 
 }
+
+
 
 function Parks(props) {
     const showText = props.text
