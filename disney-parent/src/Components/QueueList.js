@@ -1,12 +1,30 @@
 import React, { useState, useEffect } from "react";
 import Axios from 'axios';
-import { Button } from "semantic-ui-react";
+import { Button, Card, Icon } from "semantic-ui-react";
 import styled from 'styled-components';
 
 const BtnWrapper = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
+`
+
+const UserWrapper = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    width: 100%;
+`
+
+const UserCard = styled.div`
+    width: 30%;
+    height: 20vh;
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+    margin-top: 20px;
 `
 
 
@@ -150,12 +168,13 @@ console.log(parkState)
                     ))}
                 </BtnWrapper>
                 
-                {users.map((user) => {
-                    return (
-                    <QueueCard key={user.id} person={user} parkState={parkState} />
-                    ) 
-                })}
-                
+                <UserWrapper>
+                    {users.map((user) => {
+                        return (
+                        <QueueCard key={user.id} person={user} parkState={parkState} />
+                        ) 
+                    })}
+                </UserWrapper>
             </div>
         </section>
     )
@@ -168,27 +187,29 @@ function QueueCard(props) {
 
     if (parks === 'All Parks') {
         return (
-            <div >
-                <h1>{ people.name }</h1>
-                <span>{people.email} {people.park} {people.pass} {people.time_slot} </span>
-            </div>
+            <User people={people}/>
         )
-    } else if (parks != people.park) {
+    } else if (parks != props.person.park) {
         return (
-            <div style={{display: 'none'}}>
+            <UserCard style={{display: 'none'}}>
                 <h1>{ people.name }</h1>
                 <span>{people.email} {people.park} {people.pass} {people.time_slot} </span>
-            </div>
+            </UserCard>
         )
     }
     else {
         return (
-            <div>
-                <h1>{ people.name }</h1>
-                <span>{people.email} {people.park} {people.pass} {people.time_slot} </span>
-            </div>
+            <User people={people}/>
         )
     } 
+}
+function User(props) {
+    return (
+        <UserCard>
+            <h1>{ props.people.name }</h1>
+            <span>{props.people.email} {props.people.park} {props.people.pass} {props.people.time_slot} </span>
+        </UserCard>
+    )
 }
 
 
