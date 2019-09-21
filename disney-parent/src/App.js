@@ -7,12 +7,14 @@ import Queue from './Components/QueueList';
 
 function App() {
   return (
-    <main>
+    
+    <>
       <Welcome />
       <Route exact path='/' component={Login} />
       <Route path='/signup' component={Signup} />
       <Route path='/dashboard' component={Queue} />
-    </main>
+    </>
+    
     
   )
 }

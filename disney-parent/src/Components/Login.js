@@ -88,8 +88,9 @@ export default withFormik({
         password: yup.string().required('Password is required!')
     }),
     handleSubmit: (values, { setStatus }) => {
-        console.log('Email is', values.email)
-        console.log('Password is', values.password)
+        console.log('Submitted Email:', values.email);
+        console.log('Submitted Password:', values.password)
+        setTimeout(() => setStatus(false), 3000)
     }
     
 })(Login);

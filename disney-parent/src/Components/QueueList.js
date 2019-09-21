@@ -14,6 +14,7 @@ const UserWrapper = styled.div`
     flex-flow: row wrap;
     justify-content: space-evenly;
     width: 100%;
+    margin-top: 40px;
 `
 
 const UserCard = styled.div`
@@ -25,6 +26,20 @@ const UserCard = styled.div`
     text-align: center;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
     margin-top: 20px;
+`
+
+const ParkBtn = styled.button`
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    transition: all .3s;
+    cursor: pointer;
+    padding-bottom: 10px;
+
+    :hover {
+        transform: scale(1.1);
+        border-bottom: 1px solid black;
+    }
 `
 
 
@@ -218,12 +233,14 @@ function User(props) {
 
 
 
+
+
 function Parks(props) {
     const showText = props.text
         return (
             <div>
                 <Button.Group>
-                    <Button onClick={() => props.setParkState(showText)}>{showText}</Button>
+                    <ParkBtn onClick={() => props.setParkState(showText)}>{showText}</ParkBtn>
                 </Button.Group>
             </div>
             
