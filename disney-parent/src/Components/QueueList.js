@@ -39,7 +39,7 @@ const[users, setUsers] = useState([
         "email": "Sincere@april.biz",
         "park": "Magic Kingdom",
         "pass": "childcare",
-        "time_slot": 1
+        "time_slot": '1:00 PM'
     
     },
     {
@@ -48,7 +48,7 @@ const[users, setUsers] = useState([
         "email": "rolWalt@gmail.com",
         "park": "Epcot",
         "pass": "stroller",
-        "time_slot": 3
+        "time_slot": '10:20 AM'
     
     },
     {
@@ -57,7 +57,7 @@ const[users, setUsers] = useState([
         "email": "Dixon344@yahoo.com",
         "park": "Magic Kingdom",
         "pass": "childcare",
-        "time_slot": 2
+        "time_slot": '2:40 PM'
     
     },
     {
@@ -66,7 +66,7 @@ const[users, setUsers] = useState([
         "email": "butterfly@shuttle.org",
         "park": "Hollywood Studios",
         "pass": "stroller",
-        "time_slot": 5
+        "time_slot": '12:30 PM'
     
     },
     {
@@ -75,7 +75,7 @@ const[users, setUsers] = useState([
         "email": "wishingwell@indie.biz",
         "park": "Epcot",
         "pass": "childcare",
-        "time_slot": 1
+        "time_slot": '9:15 AM'
     
     },
     {
@@ -84,7 +84,7 @@ const[users, setUsers] = useState([
         "email": "Mac10@apple.com",
         "park": "Animal Kingdom",
         "pass": "childcare",
-        "time_slot": 2
+        "time_slot": '2:30 PM'
     
     },
     {
@@ -93,7 +93,7 @@ const[users, setUsers] = useState([
         "email": "HamSandwhich@jelly.org",
         "park": "Magic Kingdom",
         "pass": "stroller",
-        "time_slot": 2
+        "time_slot": '10:45 AM'
     
     },
     {
@@ -102,7 +102,7 @@ const[users, setUsers] = useState([
         "email": "123free@aol.com",
         "park": "Animal Kingdom",
         "pass": "stroller",
-        "time_slot": 6
+        "time_slot": '6:00 PM'
     
     },
     {
@@ -111,7 +111,7 @@ const[users, setUsers] = useState([
         "email": "Gaines@yahoo.org",
         "park": "Hollywood Studios",
         "pass": "childcare",
-        "time_slot": 5
+        "time_slot": '5:35 PM'
     
     },
     {
@@ -120,7 +120,7 @@ const[users, setUsers] = useState([
         "email": "skinner@google.org",
         "park": "Epcot",
         "pass": "stroller",
-        "time_slot": 1
+        "time_slot": '11:00 AM'
     
     },
     {
@@ -129,7 +129,7 @@ const[users, setUsers] = useState([
         "email": "natedog@travel.org",
         "park": "Hollywood Studios",
         "pass": "stroller",
-        "time_slot": 2
+        "time_slot": '8:45 AM'
     
     },
     {
@@ -138,7 +138,7 @@ const[users, setUsers] = useState([
         "email": "ziggy@marley.co",
         "park": "Animal Kingdom",
         "pass": "childcare",
-        "time_slot": 5
+        "time_slot": '1:30 PM'
     
     }
 ]);
@@ -206,8 +206,12 @@ function QueueCard(props) {
 function User(props) {
     return (
         <UserCard>
-            <h1>{ props.people.name }</h1>
-            <span>{props.people.email} {props.people.park} {props.people.pass} {props.people.time_slot} </span>
+            <h1>{props.people.pass}</h1>
+            {/* <span>{props.people.email} {props.people.park} {props.people.pass} {props.people.time_slot} </span> */}
+            <p>{`Location: ${props.people.park}`}</p>
+            <p>{`Avalailable for ${props.people.time_slot}`}</p>
+            <p>{`Name: ${props.people.name}`}</p>
+            <p>{`Email: ${props.people.email}`}</p>
         </UserCard>
     )
 }
