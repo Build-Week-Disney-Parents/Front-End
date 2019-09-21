@@ -3,6 +3,7 @@ import { useSpring, animated } from 'react-spring';
 import Axios from 'axios';
 import { Button, Card, Icon } from "semantic-ui-react";
 import styled from 'styled-components';
+import SwitchUser from './SwitchUser';
 
 const BtnWrapper = styled.div`
     width: 100%;
@@ -178,8 +179,12 @@ const buttonText = [
 
 const [parkState, setParkState] = useState('All Parks');
 
+// usestate for triggering the animation
+const [isToggled, setToggle] = useState(false);
+
 console.log(parkState)
 
+// animation
 const fade = useSpring({opacity: 1, from: {opacity: 0}})
 
 
@@ -193,6 +198,7 @@ const fade = useSpring({opacity: 1, from: {opacity: 0}})
                     {buttonText.map(text => (
                         <Parks key={text.id} text={text} setParkState={setParkState} />
                     ))}
+                    <SwitchUser />
                 </BtnWrapper>
                 
                 <UserWrapper style={fade}>
