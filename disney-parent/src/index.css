@@ -31,7 +31,7 @@ main {
 
 input::placeholder {
   font-size: 1.2rem;
-  color: black;
+  color: white;
 }
 
 a {
@@ -53,6 +53,12 @@ a:hover {
   font-size: 1.2rem;
   margin-top: 10px;
   border-radius: 10px;
+  transition: all .3s;
+}
+
+.loginBtn:hover {
+  color: white;
+  transform: scale(1.1);
 }
 
 
