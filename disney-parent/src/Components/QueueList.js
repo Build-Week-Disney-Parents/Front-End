@@ -15,6 +15,7 @@ const UserWrapper = styled.div`
     justify-content: space-evenly;
     width: 100%;
     margin-top: 40px;
+    
 `
 
 const UserCard = styled.div`
@@ -26,6 +27,12 @@ const UserCard = styled.div`
     text-align: center;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
     margin-top: 20px;
+
+    transition: all .3s;
+
+    :hover {
+        transform: translateY(-10px);
+    }
 `
 
 const ParkBtn = styled.button`
