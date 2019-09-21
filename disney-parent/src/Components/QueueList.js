@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSpring, animated } from 'react-spring';
 import Axios from 'axios';
 import { Button, Card, Icon } from "semantic-ui-react";
 import styled from 'styled-components';
@@ -9,7 +10,7 @@ const BtnWrapper = styled.div`
     justify-content: space-between;
 `
 
-const UserWrapper = styled.div`
+const UserWrapper = styled(animated.div)`
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
@@ -42,10 +43,12 @@ const ParkBtn = styled.button`
     transition: all .3s;
     cursor: pointer;
     padding-bottom: 10px;
+    color: white;
 
     :hover {
         transform: scale(1.1);
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid lightblue;
+        color: lightblue;
     }
 `
 
@@ -177,6 +180,8 @@ const [parkState, setParkState] = useState('All Parks');
 
 console.log(parkState)
 
+const fade = useSpring({opacity: 1, from: {opacity: 0}})
+
 
 
 
@@ -190,7 +195,7 @@ console.log(parkState)
                     ))}
                 </BtnWrapper>
                 
-                <UserWrapper>
+                <UserWrapper style={fade}>
                     {users.map((user) => {
                         return (
                         <QueueCard key={user.id} person={user} parkState={parkState} />
