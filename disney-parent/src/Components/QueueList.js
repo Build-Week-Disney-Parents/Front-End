@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Axios from 'axios';
+<<<<<<< HEAD
 import Parks from "./Parent";
+=======
+import { Button } from "semantic-ui-react";
+import styled from 'styled-components';
+>>>>>>> 17130e963c835a074171aa7b4ec67baf056de7e5
 
 
 
@@ -119,6 +124,7 @@ const[users, setUsers] = useState([
     }
 ]);
 
+<<<<<<< HEAD
 const magicKingdom = users.filter(user => {
     return user.park === "Magic Kingdom"
 })
@@ -131,15 +137,42 @@ const hollywoodStudios = users.filter(user => {
 const epcot = users.filter(user => {
     return user.park === "Epcot"
 })
+=======
+const buttonText = [
+    'All Parks',
+    'Magic Kingdom',
+    'Animal Kingdom',
+    'Hollywood Studios',
+    'Epcot'
+]
+
+const [parkState, setParkState] = useState('Magic Kingdom');
+
+console.log(parkState)
+
+
+
+>>>>>>> 17130e963c835a074171aa7b4ec67baf056de7e5
 
 
     return(
         <section>
             <div>
+<<<<<<< HEAD
                 <Parks animalKingdom={animalKingdom} epcot={epcot} hollywoodStudios={hollywoodStudios} magicKingdom={magicKingdom}/>
                 {users.map(user => (
                     <QueueCard key={user.id} person={user} />
+=======
+                {buttonText.map(text => (
+                    <Parks key={text.id} text={text} setParkState={setParkState} />
+>>>>>>> 17130e963c835a074171aa7b4ec67baf056de7e5
                 ))}
+                {users.map((user) => {
+                    return (
+                    <QueueCard key={user.id} person={user} parkState={parkState} />
+                    ) 
+                })}
+                
             </div>
         </section>
     )
@@ -148,13 +181,51 @@ const epcot = users.filter(user => {
 function QueueCard(props) {
     // const[name, email, park, pass, time_slot] = person;
     const people = props.person
+    const parks = props.parkState
+    console.log(parks)
 
-    return(
-        <div>
-            <h1>{ people.name }</h1>
-            <span>{people.email} {people.park} {people.pass} {people.time_slot} </span>
-        </div>
-    )
+    if (parks != people.park) {
+        return (
+            <div style={{display: 'none'}}>
+                <h1>{ people.name }</h1>
+                <span>{people.email} {people.park} {people.pass} {people.time_slot} </span>
+            </div>
+        )
+    } else if (parks === people && parks != 'All Parks') {
+        return (
+            <div>
+                <h1>{ people.name }</h1>
+                <span>{people.email} {people.park} {people.pass} {people.time_slot} </span>
+            </div>
+        )
+    }
+    else {
+        return (
+            <div>
+                <h1>{ people.name }</h1>
+                <span>{people.email} {people.park} {people.pass} {people.time_slot} </span>
+            </div>
+        )
+    } 
 }
+<<<<<<< HEAD
 export default { QueueCard }
+=======
+
+function Parks(props) {
+    const showText = props.text
+        return (
+            <div>
+                <Button.Group>
+                    <Button onClick={() => props.setParkState(showText)}>{showText}</Button>
+                </Button.Group>
+            </div>
+            
+        )
+    }
+
+
+export default Queue
+>>>>>>> 17130e963c835a074171aa7b4ec67baf056de7e5
+
 
