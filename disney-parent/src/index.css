@@ -13,7 +13,7 @@ code {
 }
 
 main {
-  width: 55vw;
+  width: 70vw;
   min-height: 50vh;
   max-width: 1024px;
   margin: 35px auto;
@@ -22,9 +22,16 @@ main {
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
+.container {
+  padding: 5%;
+  height: auto;
+  background: linear-gradient(to right, rgba(81, 178, 207, 0.7) 0%, rgba(7, 126, 170, 0.8) 30%, rgba(2, 4, 5, 0.3) 50%, rgba(22, 43, 51, 0.6) 100%), url('./disney.jpg') no-repeat 50% 50%;
+  background-size: cover;
+}
+
 input::placeholder {
   font-size: 1.2rem;
-  color: black;
+  color: white;
 }
 
 a {
@@ -46,6 +53,12 @@ a:hover {
   font-size: 1.2rem;
   margin-top: 10px;
   border-radius: 10px;
+  transition: all .3s;
+}
+
+.loginBtn:hover {
+  color: white;
+  transform: scale(1.1);
 }
 
 
