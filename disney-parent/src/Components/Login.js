@@ -37,9 +37,9 @@ const Login = ({ errors, touched, status }) => {
         padding: 10px 5px;
         font-size: 1.2rem;
         background: transparent;
-        border: 1px solid black;
+        border: 1px solid white;
         border-radius: 10px;
-        color: black;
+        color: white;
     `
     const SignupText = styled.div`
         margin-top: 10px;
@@ -63,11 +63,11 @@ const Login = ({ errors, touched, status }) => {
 
                 <label style={{marginTop: '10px', alignSelf: 'flex-start'}}>
                     <Field type='checkbox' name='remember' />
-                    <span style={{fontSize: '.8rem'}}>Remember Me?</span>
+                    <span style={{fontSize: '.8rem', color: 'white'}}>Remember Me?</span>
                 </label>
-                <SubmitButton type='submit'>Login</SubmitButton>
+                <Link to='/user-dashboard' className='loginBtn'>Login</Link>
                 <SignupText>
-                    <Link to='/signup'>Don't have an account? Signup now!</Link>
+                    <Link to='/signup' style={{color: 'white'}}>Don't have an account? Signup now!</Link>
                 </SignupText>
             </Form>
         </Wrapper>
@@ -88,8 +88,9 @@ export default withFormik({
         password: yup.string().required('Password is required!')
     }),
     handleSubmit: (values, { setStatus }) => {
-        console.log('Email is', values.email)
-        console.log('Password is', values.password)
+        console.log('Submitted Email:', values.email);
+        console.log('Submitted Password:', values.password)
+        setTimeout(() => setStatus(false), 3000)
     }
     
 })(Login);

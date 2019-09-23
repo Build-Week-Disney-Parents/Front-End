@@ -3,31 +3,25 @@ import Login from './Components/Login';
 import Signup from './Components/Signup';
 import Welcome from './Components/Welcome';
 import { Route } from 'react-router-dom';
-<<<<<<< HEAD
-import Parks from "./Components/Parent";
 import Queue from './Components/QueueList';
-
+import Volunteer from './Components/Volunteer';
+import Disney from './disney.jpg'
 
 function App() {
-  return (
-    <div>
-      <Queue/>
+
+  
+  
+
+  return ( 
+    
+    <div className='container'>
+      <Welcome />
+      <Route exact path='/' component={Login} />
+      <Route path='/signup' component={Signup} />
+      <Route path='/user-dashboard' component={Queue} />
+      <Route path='/volunteer-dashboard' component={Volunteer} />
     </div>
-=======
-import Queue from './Components/QueueList';
-
-function App() {
-  return (
->>>>>>> 17130e963c835a074171aa7b4ec67baf056de7e5
-    // <main>
-    //   <Welcome />
-    //   <Route exact path='/' component={Login} />
-    //   <Route path='/signup' component={Signup} />
-    // </main>
-<<<<<<< HEAD
-=======
-    <Queue />
->>>>>>> 17130e963c835a074171aa7b4ec67baf056de7e5
+  
   )
 }
 

@@ -1,11 +1,60 @@
 import React, { useState, useEffect } from "react";
+import { useSpring, animated } from 'react-spring';
 import Axios from 'axios';
-<<<<<<< HEAD
 import Parks from "./Parent";
-=======
 import { Button } from "semantic-ui-react";
 import styled from 'styled-components';
->>>>>>> 17130e963c835a074171aa7b4ec67baf056de7e5
+import { Button, Card, Icon } from "semantic-ui-react";
+import styled from 'styled-components';
+import SwitchUser from './SwitchUser';
+
+const BtnWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+`
+
+const UserWrapper = styled(animated.div)`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 40px;
+    
+`
+
+const UserCard = styled.div`
+    width: 30%;
+    height: 20vh;
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+    margin-top: 20px;
+
+    transition: all .3s;
+
+    :hover {
+        transform: translateY(-10px);
+    }
+`
+
+const ParkBtn = styled.button`
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    transition: all .3s;
+    cursor: pointer;
+    padding-bottom: 10px;
+    color: white;
+
+    :hover {
+        transform: scale(1.1);
+        border-bottom: 1px solid lightblue;
+        color: lightblue;
+    }
+`
 
 
 
@@ -20,7 +69,7 @@ const[users, setUsers] = useState([
         "email": "Sincere@april.biz",
         "park": "Magic Kingdom",
         "pass": "childcare",
-        "time_slot": 1
+        "time_slot": '1:00 PM'
     
     },
     {
@@ -29,7 +78,7 @@ const[users, setUsers] = useState([
         "email": "rolWalt@gmail.com",
         "park": "Epcot",
         "pass": "stroller",
-        "time_slot": 3
+        "time_slot": '10:20 AM'
     
     },
     {
@@ -38,7 +87,7 @@ const[users, setUsers] = useState([
         "email": "Dixon344@yahoo.com",
         "park": "Magic Kingdom",
         "pass": "childcare",
-        "time_slot": 2
+        "time_slot": '2:40 PM'
     
     },
     {
@@ -47,7 +96,7 @@ const[users, setUsers] = useState([
         "email": "butterfly@shuttle.org",
         "park": "Hollywood Studios",
         "pass": "stroller",
-        "time_slot": 5
+        "time_slot": '12:30 PM'
     
     },
     {
@@ -56,7 +105,7 @@ const[users, setUsers] = useState([
         "email": "wishingwell@indie.biz",
         "park": "Epcot",
         "pass": "childcare",
-        "time_slot": 1
+        "time_slot": '9:15 AM'
     
     },
     {
@@ -65,7 +114,7 @@ const[users, setUsers] = useState([
         "email": "Mac10@apple.com",
         "park": "Animal Kingdom",
         "pass": "childcare",
-        "time_slot": 2
+        "time_slot": '2:30 PM'
     
     },
     {
@@ -74,7 +123,7 @@ const[users, setUsers] = useState([
         "email": "HamSandwhich@jelly.org",
         "park": "Magic Kingdom",
         "pass": "stroller",
-        "time_slot": 2
+        "time_slot": '10:45 AM'
     
     },
     {
@@ -83,7 +132,7 @@ const[users, setUsers] = useState([
         "email": "123free@aol.com",
         "park": "Animal Kingdom",
         "pass": "stroller",
-        "time_slot": 6
+        "time_slot": '6:00 PM'
     
     },
     {
@@ -92,7 +141,7 @@ const[users, setUsers] = useState([
         "email": "Gaines@yahoo.org",
         "park": "Hollywood Studios",
         "pass": "childcare",
-        "time_slot": 5
+        "time_slot": '5:35 PM'
     
     },
     {
@@ -101,7 +150,7 @@ const[users, setUsers] = useState([
         "email": "skinner@google.org",
         "park": "Epcot",
         "pass": "stroller",
-        "time_slot": 1
+        "time_slot": '11:00 AM'
     
     },
     {
@@ -110,7 +159,7 @@ const[users, setUsers] = useState([
         "email": "natedog@travel.org",
         "park": "Hollywood Studios",
         "pass": "stroller",
-        "time_slot": 2
+        "time_slot": '8:45 AM'
     
     },
     {
@@ -119,25 +168,12 @@ const[users, setUsers] = useState([
         "email": "ziggy@marley.co",
         "park": "Animal Kingdom",
         "pass": "childcare",
-        "time_slot": 5
+        "time_slot": '1:30 PM'
     
     }
 ]);
 
-<<<<<<< HEAD
-const magicKingdom = users.filter(user => {
-    return user.park === "Magic Kingdom"
-})
-const animalKingdom = users.filter(user => {
-    return user.park === "Animal Kingdom"
-})
-const hollywoodStudios = users.filter(user => {
-    return user.park === "Hollywood Studios"
-})
-const epcot = users.filter(user => {
-    return user.park === "Epcot"
-})
-=======
+
 const buttonText = [
     'All Parks',
     'Magic Kingdom',
@@ -146,33 +182,43 @@ const buttonText = [
     'Epcot'
 ]
 
-const [parkState, setParkState] = useState('Magic Kingdom');
+const [parkState, setParkState] = useState('All Parks');
+
+// usestate for triggering the animation
+const [isToggled, setToggle] = useState(false);
 
 console.log(parkState)
 
-
-
->>>>>>> 17130e963c835a074171aa7b4ec67baf056de7e5
+// animation
+const fade = useSpring({opacity: 1, from: {opacity: 0}})
 
 
     return(
         <section>
             <div>
-<<<<<<< HEAD
-                <Parks animalKingdom={animalKingdom} epcot={epcot} hollywoodStudios={hollywoodStudios} magicKingdom={magicKingdom}/>
-                {users.map(user => (
-                    <QueueCard key={user.id} person={user} />
-=======
                 {buttonText.map(text => (
                     <Parks key={text.id} text={text} setParkState={setParkState} />
->>>>>>> 17130e963c835a074171aa7b4ec67baf056de7e5
                 ))}
                 {users.map((user) => {
                     return (
                     <QueueCard key={user.id} person={user} parkState={parkState} />
                     ) 
                 })}
+
+                <BtnWrapper>
+                    {buttonText.map(text => (
+                        <Parks key={text.id} text={text} setParkState={setParkState} />
+                    ))}
+                    <SwitchUser />
+                </BtnWrapper>
                 
+                <UserWrapper style={fade}>
+                    {users.map((user) => {
+                        return (
+                        <QueueCard key={user.id} person={user} parkState={parkState} />
+                        ) 
+                    })}
+                </UserWrapper>
             </div>
         </section>
     )
@@ -182,42 +228,48 @@ function QueueCard(props) {
     // const[name, email, park, pass, time_slot] = person;
     const people = props.person
     const parks = props.parkState
-    console.log(parks)
 
-    if (parks != people.park) {
+    if (parks === 'All Parks') {
         return (
-            <div style={{display: 'none'}}>
-                <h1>{ people.name }</h1>
-                <span>{people.email} {people.park} {people.pass} {people.time_slot} </span>
-            </div>
+            <User people={people}/>
         )
-    } else if (parks === people && parks != 'All Parks') {
+    } else if (parks != props.person.park) {
         return (
-            <div>
+            <UserCard style={{display: 'none'}}>
                 <h1>{ people.name }</h1>
                 <span>{people.email} {people.park} {people.pass} {people.time_slot} </span>
-            </div>
+            </UserCard>
         )
     }
     else {
         return (
-            <div>
-                <h1>{ people.name }</h1>
-                <span>{people.email} {people.park} {people.pass} {people.time_slot} </span>
-            </div>
+            <User people={people}/>
         )
     } 
 }
-<<<<<<< HEAD
-export default { QueueCard }
-=======
+
+function User(props) {
+    return (
+        <UserCard>
+            <h1>{props.people.pass}</h1>
+            {/* <span>{props.people.email} {props.people.park} {props.people.pass} {props.people.time_slot} </span> */}
+            <p>{`Location: ${props.people.park}`}</p>
+            <p>{`Avalailable for ${props.people.time_slot}`}</p>
+            <p>{`Name: ${props.people.name}`}</p>
+            <p>{`Email: ${props.people.email}`}</p>
+        </UserCard>
+    )
+}
+
+
+
 
 function Parks(props) {
     const showText = props.text
         return (
             <div>
                 <Button.Group>
-                    <Button onClick={() => props.setParkState(showText)}>{showText}</Button>
+                    <ParkBtn onClick={() => props.setParkState(showText)}>{showText}</ParkBtn>
                 </Button.Group>
             </div>
             
@@ -226,6 +278,6 @@ function Parks(props) {
 
 
 export default Queue
->>>>>>> 17130e963c835a074171aa7b4ec67baf056de7e5
+
 
 
