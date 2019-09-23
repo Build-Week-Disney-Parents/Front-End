@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useSpring, animated } from 'react-spring';
 import Axios from 'axios';
-import { Button, Card, Icon } from "semantic-ui-react";
 import styled from 'styled-components';
-import SwitchUser from './SwitchUser';
+import SwitchUser from '../SwitchUser';
+import QueueCard from './QueueCard';
+import Parks from '../Parks';
 
 const BtnWrapper = styled.div`
     width: 100%;
@@ -20,38 +21,24 @@ const UserWrapper = styled(animated.div)`
     
 `
 
-const UserCard = styled.div`
-    width: 30%;
-    height: 20vh;
-    background: white;
-    border-radius: 10px;
-    padding: 10px;
-    text-align: center;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-    margin-top: 20px;
+// const UserCard = styled.div`
+//     width: 30%;
+//     height: 20vh;
+//     background: white;
+//     border-radius: 10px;
+//     padding: 10px;
+//     text-align: center;
+//     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+//     margin-top: 20px;
 
-    transition: all .3s;
+//     transition: all .3s;
 
-    :hover {
-        transform: translateY(-10px);
-    }
-`
+//     :hover {
+//         transform: translateY(-10px);
+//     }
+// `
 
-const ParkBtn = styled.button`
-    background: none;
-    border: none;
-    font-size: 1.2rem;
-    transition: all .3s;
-    cursor: pointer;
-    padding-bottom: 10px;
-    color: white;
 
-    :hover {
-        transform: scale(1.1);
-        border-bottom: 1px solid lightblue;
-        color: lightblue;
-    }
-`
 
 
 
@@ -213,57 +200,57 @@ const fade = useSpring({opacity: 1, from: {opacity: 0}})
     )
 }
 
-function QueueCard(props) {
-    // const[name, email, park, pass, time_slot] = person;
-    const people = props.person
-    const parks = props.parkState
+// function QueueCard(props) {
+//     // const[name, email, park, pass, time_slot] = person;
+//     const people = props.person
+//     const parks = props.parkState
 
-    if (parks === 'All Parks') {
-        return (
-            <User people={people}/>
-        )
-    } else if (parks != props.person.park) {
-        return (
-            <UserCard style={{display: 'none'}}>
-                <h1>{ people.name }</h1>
-                <span>{people.email} {people.park} {people.pass} {people.time_slot} </span>
-            </UserCard>
-        )
-    }
-    else {
-        return (
-            <User people={people}/>
-        )
-    } 
-}
-function User(props) {
-    return (
-        <UserCard>
-            <h1>{props.people.pass}</h1>
-            {/* <span>{props.people.email} {props.people.park} {props.people.pass} {props.people.time_slot} </span> */}
-            <p>{`Location: ${props.people.park}`}</p>
-            <p>{`Avalailable for ${props.people.time_slot}`}</p>
-            <p>{`Name: ${props.people.name}`}</p>
-            <p>{`Email: ${props.people.email}`}</p>
-        </UserCard>
-    )
-}
-
-
+//     if (parks === 'All Parks') {
+//         return (
+//             <User people={people}/>
+//         )
+//     } else if (parks != props.person.park) {
+//         return (
+//             <UserCard style={{display: 'none'}}>
+//                 <h1>{ people.name }</h1>
+//                 <span>{people.email} {people.park} {people.pass} {people.time_slot} </span>
+//             </UserCard>
+//         )
+//     }
+//     else {
+//         return (
+//             <User people={people}/>
+//         )
+//     } 
+// }
+// function User(props) {
+//     return (
+//         <UserCard>
+//             <h1>{props.people.pass}</h1>
+//             {/* <span>{props.people.email} {props.people.park} {props.people.pass} {props.people.time_slot} </span> */}
+//             <p>{`Location: ${props.people.park}`}</p>
+//             <p>{`Avalailable for ${props.people.time_slot}`}</p>
+//             <p>{`Name: ${props.people.name}`}</p>
+//             <p>{`Email: ${props.people.email}`}</p>
+//         </UserCard>
+//     )
+// }
 
 
 
-function Parks(props) {
-    const showText = props.text
-        return (
-            <div>
-                <Button.Group>
-                    <ParkBtn onClick={() => props.setParkState(showText)}>{showText}</ParkBtn>
-                </Button.Group>
-            </div>
+
+
+// function Parks(props) {
+//     const showText = props.text
+//         return (
+//             <div>
+//                 <Button.Group>
+//                     <ParkBtn onClick={() => props.setParkState(showText)}>{showText}</ParkBtn>
+//                 </Button.Group>
+//             </div>
             
-        )
-    }
+//         )
+//     }
 
 
 export default Queue
