@@ -23,9 +23,9 @@ const Signup = ({ errors, touched, status }) => {
         padding: 10px 5px;
         font-size: 1.2rem;
         background: transparent;
-        border: 1px solid black;
+        border: 1px solid white;
         border-radius: 10px;
-        color: black;
+        color: white;
     `
 
     return (
