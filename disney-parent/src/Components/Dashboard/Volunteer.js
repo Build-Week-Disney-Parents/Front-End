@@ -14,7 +14,7 @@ const Input = styled.input`
         background: transparent;
         border: 1px solid white;
         border-radius: 10px;
-        color: white;
+        color: black;
     `
 
 const Div = styled.div`
@@ -36,6 +36,7 @@ const SubmitButton = styled.button`
         margin-top: 10px;
         border-radius: 10px;
     `
+
 
 const VolunteerForm = ({
     values,

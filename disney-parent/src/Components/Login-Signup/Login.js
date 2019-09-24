@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { Form, Field, withFormik } from 'formik';
 import * as yup from 'yup';
 import styled from 'styled-components';
-import { primary1 } from './Styles';
+import { primary1 } from '../Styles';
+import API from '../../Utilities/API';
 
 
 
@@ -30,7 +31,7 @@ const Login = ({ errors, touched, status }) => {
         margin-top: 10px;
         border-radius: 10px;
     `
-    const Input = styled.input`
+    const Input = styled(Field)`
         align-self: flex-start;
         width: 97%;
         margin-top: 10px;
@@ -55,17 +56,18 @@ const Login = ({ errors, touched, status }) => {
                 flexFlow: 'Column Wrap',
                 alignContent: 'center',
                 }}>
-                {touched.email && errors.email && <p className='error'>{errors.email}</p>}
-                <Input type='email' name='email' placeholder='Email' />
+                {/* {touched.username && errors.username && <p className='error'>{errors.username}</p>} */}
+                <Input type='text' name='username' placeholder='Username' />
 
-                {touched.password && errors.password && <p className='error'>{errors.password}</p>}
+                {/* {touched.password && errors.password && <p className='error'>{errors.password}</p>} */}
                 <Input type='password' name='password' placeholder='Password' />
 
                 <label style={{marginTop: '10px', alignSelf: 'flex-start'}}>
                     <Field type='checkbox' name='remember' />
                     <span style={{fontSize: '.8rem', color: 'white'}}>Remember Me?</span>
                 </label>
-                <Link to='/user-dashboard' className='loginBtn'>Login</Link>
+                {/* <Link to='/dashboard' className='loginBtn'>Login</Link> */}
+                <button type='submit'>Login</button>
                 <SignupText>
                     <Link to='/signup' style={{color: 'white'}}>Don't have an account? Signup now!</Link>
                 </SignupText>
@@ -78,19 +80,28 @@ const Login = ({ errors, touched, status }) => {
 export default withFormik({
     mapPropsToValues: (values) => {
         return {
-            email: values.email || '',
+            username: values.username || '',
             password: values.password || '',
-            remember: values.rememer || false
+            remember: values.remember || false
         }
     },
-    validationSchema: yup.object().shape({
-        email: yup.string().required('Email is required!'),
-        password: yup.string().required('Password is required!')
-    }),
+
+    // validationSchema: yup.object().shape({
+    //     username: yup.string().required('Username is required'),
+    //     password: yup.string().required('Password is required')
+    // }),
+
     handleSubmit: (values, { setStatus }) => {
-        console.log('Submitted Email:', values.email);
-        console.log('Submitted Password:', values.password)
-        setTimeout(() => setStatus(false), 3000)
+        const {username, password } = values;
+
+        API
+        .post("/accounts/login", { username, password })
+        .then(response => {
+            localStorage.setItem("token", response.data.token);
+            console.log("Token set!")
+            setStatus(false);
+        })
+        .catch(error => console.log(error));
     }
     
 })(Login);
