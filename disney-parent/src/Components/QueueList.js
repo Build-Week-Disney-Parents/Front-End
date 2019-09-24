@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useSpring, animated } from 'react-spring';
-import Axios from 'axios';
 import { Button, Card, Icon } from "semantic-ui-react";
 import styled from 'styled-components';
 import SwitchUser from './SwitchUser';
@@ -29,11 +28,15 @@ const UserCard = styled.div`
     text-align: center;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
     margin-top: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 
     transition: all .3s;
 
     :hover {
         transform: translateY(-10px);
+        overflow: visible;
+        height: 100%;
     }
 `
 
@@ -56,8 +59,9 @@ const ParkBtn = styled.button`
 
 
 
-function Queue() {
+function Queue(props) {
 // const[name, email, park, pass, time_slot] = data;
+console.log(props)
 const[users, setUsers] = useState([
     {
         "id": 1,
@@ -169,6 +173,7 @@ const[users, setUsers] = useState([
     }
 ]);
 
+
 const buttonText = [
     'All Parks',
     'Magic Kingdom',
@@ -188,12 +193,10 @@ console.log(parkState)
 const fade = useSpring({opacity: 1, from: {opacity: 0}})
 
 
-
-
-
     return(
         <section>
             <div>
+                
                 <BtnWrapper>
                     {buttonText.map(text => (
                         <Parks key={text.id} text={text} setParkState={setParkState} />
@@ -236,6 +239,7 @@ function QueueCard(props) {
         )
     } 
 }
+
 function User(props) {
     return (
         <UserCard>
@@ -248,7 +252,6 @@ function User(props) {
         </UserCard>
     )
 }
-
 
 
 
@@ -267,5 +270,6 @@ function Parks(props) {
 
 
 export default Queue
+
 
 
