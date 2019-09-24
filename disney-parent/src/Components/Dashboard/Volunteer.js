@@ -37,21 +37,7 @@ const SubmitButton = styled.button`
         border-radius: 10px;
     `
 
-<<<<<<< HEAD:disney-parent/src/Components/Dashboard/Volunteer.js
-function Volunteer() {
 
-
-
-
-
-    return (
-        <div>
-            <SwitchUser />
-            <form>
-                <Input type="text" placeholder='Type of service'/>
-            </form>
-        </div>
-=======
 const VolunteerForm = ({
     values,
     errors,
@@ -104,7 +90,6 @@ const VolunteerForm = ({
             </Div>
         </Form>
         </>
->>>>>>> 8434c33e54b8a92d2b68bd5595c199832ec90bbe:disney-parent/src/Components/Volunteer.js
     )
 } 
 
