@@ -4,7 +4,7 @@ import Signup from './Components/Login-Signup/Signup';
 import Welcome from './Components/Welcome';
 import { Route } from 'react-router-dom';
 import Queue from './Components/Dashboard/Queue/Queue';
-import Volunteer from './Components/Dashboard/Volunteer';
+import Vform from './Components/Dashboard/Volunteer';
 import Disney from './disney.jpg'
 import Dashboard from './Components/Dashboard/Dashboard';
 
