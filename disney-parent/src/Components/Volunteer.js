@@ -51,12 +51,18 @@ const VolunteerForm = ({
             <div>
                 <h2>Please fill out form to be a volunteer!</h2>
                 <div>
-                    {  touched.name && errors.name && <p>{errors.name}</p> }
-                    <Field type="text" name="name" placeholder="Enter Name" />
+                    <label>
+                        *Name: 
+                        {  touched.name && errors.name && <p>{errors.name}</p> }
+                        <Field type="text" name="name" placeholder='Enter Name' />
+                    </label>
                 </div>
                 <div>
-                    { touched.email && errors.email && <p>{errors.email}</p> }
-                    <Field type="email" name="email" placeholder="Email" />
+                    <label>
+                        *Email: 
+                        { touched.email && errors.email && <p>{errors.email}</p> }
+                        <Field type="email" name="email" placeholder="Email" />
+                    </label>
                 </div>
                 <label>
                     <Field type="checkbox" name="childcare" checked={values.childcare} />
@@ -68,6 +74,7 @@ const VolunteerForm = ({
                 </label>
             </div>
             <div>
+                
                 <label>
                         <Field type="checkbox" name="magicKingdom" checked={values.magicKingdom} />
                         Magic Kingdom
