@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+main {
+  width: 70vw;
+  min-height: 50vh;
+  max-width: 1024px;
+  margin: 35px auto;
+  background: rgba(180, 178, 178, 0.561);
+  padding: 15px;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+.container {
+  padding: 5%;
+  height: auto;
+  background: linear-gradient(to right, rgba(81, 178, 207, 0.7) 0%, rgba(7, 126, 170, 0.8) 30%, rgba(2, 4, 5, 0.3) 50%, rgba(22, 43, 51, 0.6) 100%), url('./disney.jpg') no-repeat 50% 50%;
+  background-size: cover;
+}
+
+input::placeholder {
+  font-size: 1.2rem;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: blue;
+}
+
+.loginBtn {
+  padding: 10px 0;
+  width: 100%;
+  text-align: center;
+  align-self: flex-start;
+  background: #5AAFE7;
+  color: white;
+  font-size: 1.2rem;
+  margin-top: 10px;
+  border-radius: 10px;
+  transition: all .3s;
+}
+
+.loginBtn:hover {
+  color: white;
+  transform: scale(1.1);
+}
+
+
