@@ -19,8 +19,8 @@ function App() {
       <Welcome />
       <Route exact path='/' component={Login} />
       <Route path='/signup' component={Signup} />
-      <Route path='/dashboard' component={Dashboard} />
-      <Route path='/user-dashboard' component={Queue} />
+      {/* <Route path='/dashboard' component={Dashboard} /> */}
+      <Route path='/dashboard' component={Queue} />
       <Route path='/volunteer-dashboard' component={Vform} />
     </div>
   
