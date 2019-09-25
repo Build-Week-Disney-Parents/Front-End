@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import { Button } from "semantic-ui-react";
 import { QueueCard } from "./QueueList";
@@ -37,11 +36,9 @@ function Parks({magicKingdom, animalKingdom, hollywoodStudios, epcot}) {
     
     )
 }
-=======
 // import React, { useState, useEffect } from "react";
 // import { Button } from "semantic-ui-react";
 
->>>>>>> 17130e963c835a074171aa7b4ec67baf056de7e5
 
 // // function Parks() {
 
