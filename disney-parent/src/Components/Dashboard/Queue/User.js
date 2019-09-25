@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const UserCard = styled.div`
     width: 30%;
-    height: 20vh;
+    height: auto;
     background: white;
     border-radius: 10px;
     padding: 10px;

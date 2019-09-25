@@ -56,17 +56,16 @@ const Login = ({ errors, touched, status }) => {
                 flexFlow: 'Column Wrap',
                 alignContent: 'center',
                 }}>
-                {/* {touched.username && errors.username && <p className='error'>{errors.username}</p>} */}
+                {touched.username && errors.username && <p className='error'>{errors.username}</p>}
                 <Input type='text' name='username' placeholder='Username' />
 
-                {/* {touched.password && errors.password && <p className='error'>{errors.password}</p>} */}
+                {touched.password && errors.password && <p className='error'>{errors.password}</p>}
                 <Input type='password' name='password' placeholder='Password' />
 
                 <label style={{marginTop: '10px', alignSelf: 'flex-start'}}>
                     <Field type='checkbox' name='remember' />
                     <span style={{fontSize: '.8rem', color: 'white'}}>Remember Me?</span>
                 </label>
-                {/* <Link to='/dashboard' className='loginBtn'>Login</Link> */}
                 <button type='submit'>Login</button>
                 <SignupText>
                     <Link to='/signup' style={{color: 'white'}}>Don't have an account? Signup now!</Link>
@@ -86,10 +85,10 @@ export default withFormik({
         }
     },
 
-    // validationSchema: yup.object().shape({
-    //     username: yup.string().required('Username is required'),
-    //     password: yup.string().required('Password is required')
-    // }),
+    validationSchema: yup.object().shape({
+        username: yup.string().required('Username is required'),
+        password: yup.string().required('Password is required')
+    }),
 
     handleSubmit: (values, { setStatus }) => {
         const {username, password } = values;
