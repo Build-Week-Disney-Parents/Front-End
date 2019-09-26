@@ -7,11 +7,7 @@ import { primary1 } from '../Styles';
 import API from '../../Utilities/API';
 
 
-
-const Login = ({ errors, touched, history }) => {
-    const [values, setValues] = useState([]);
-
-    const Wrapper = styled.div`
+const Wrapper = styled.div`
         width: 400px;
         text-align: center;
         margin: 0 auto;
@@ -48,31 +44,34 @@ const Login = ({ errors, touched, history }) => {
     `
 
 
-    
+
+const LoginForm = ({ errors, touched, history }) => {
+    const [values, setValues] = useState([]);
+
 
     return (
-        <Wrapper>
+        
             <Form style={{
                 display: 'flex',
                 flexFlow: 'Column Wrap',
                 alignContent: 'center',
                 }}>
-                {touched.username && errors.username && <p className='error'>{errors.username}</p>}
-                <Input type='text' name='username' placeholder='Username' />
+                <Wrapper>
+                <Input type="text" name="username" placeholder="Username" />
 
-                {touched.password && errors.password && <p className='error'>{errors.password}</p>}
-                <Input type='password' name='password' placeholder='Password' />
-                <SubmitButton type='submit'>Login</SubmitButton>
+                <Input type="password" name="password" placeholder="Password" />
+                <SubmitButton type="submit">Login</SubmitButton>
                 <SignupText>
                     <Link to='/signup' style={{color: 'white'}}>Don't have an account? Signup now!</Link>
                 </SignupText>
+                </Wrapper>
             </Form>
-        </Wrapper>
+        
         
     )
 }
 
-export default withFormik({
+const Login = withFormik({
     mapPropsToValues: (values) => {
         return {
             username: values.username || '',
@@ -80,10 +79,10 @@ export default withFormik({
         }
     },
 
-    validationSchema: yup.object().shape({
-        username: yup.string().required('Username is required'),
-        password: yup.string().required('Password is required')
-    }),
+    // validationSchema: yup.object().shape({
+    //     username: yup.string().required('Username is required'),
+    //     password: yup.string().required('Password is required')
+    // }),
 
     handleSubmit: (values, { setStatus, history }) => {
         const {username, password } = values;
@@ -99,4 +98,6 @@ export default withFormik({
         .catch(error => console.log(error));
     }
     
-})(Login);
+})(LoginForm);
+
+export default Login

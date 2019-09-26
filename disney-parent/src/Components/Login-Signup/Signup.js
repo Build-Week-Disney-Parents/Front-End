@@ -6,10 +6,7 @@ import styled from 'styled-components';
 import API from '../../Utilities/API';
 
 
-const Signup = ({ errors, touched, status }) => {
-    const [values, setValues] = useState([])
-
-    const Wrapper = styled.div`
+const Wrapper = styled.div`
         width: 400px;
         text-align: center;
         margin: 0 auto;
@@ -29,6 +26,11 @@ const Signup = ({ errors, touched, status }) => {
         border-radius: 10px;
         color: white;
     `
+
+const Signup = ({ errors, touched, status }) => {
+    const [values, setValues] = useState([])
+
+    
 
     return (
         <Wrapper>
