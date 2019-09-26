@@ -8,7 +8,7 @@ import API from '../../Utilities/API';
 
 
 
-const Login = ({ errors, touched, status }) => {
+const Login = ({ errors, touched, history }) => {
     const [values, setValues] = useState([]);
 
     const Wrapper = styled.div`
@@ -25,7 +25,8 @@ const Login = ({ errors, touched, status }) => {
         width: 100%;
         text-align: center;
         align-self: flex-start;
-        background: ${primary1};
+        background: dodgerblue;
+        border: none;
         color: white;
         font-size: 1.2rem;
         margin-top: 10px;
@@ -66,7 +67,7 @@ const Login = ({ errors, touched, status }) => {
                     <Field type='checkbox' name='remember' />
                     <span style={{fontSize: '.8rem', color: 'white'}}>Remember Me?</span>
                 </label>
-                <button type='submit'>Login</button>
+                <SubmitButton type='submit'>Login</SubmitButton>
                 <SignupText>
                     <Link to='/signup' style={{color: 'white'}}>Don't have an account? Signup now!</Link>
                 </SignupText>
@@ -90,7 +91,7 @@ export default withFormik({
         password: yup.string().required('Password is required')
     }),
 
-    handleSubmit: (values, { setStatus }) => {
+    handleSubmit: (values, { setStatus, history }) => {
         const {username, password } = values;
 
         API
@@ -99,6 +100,7 @@ export default withFormik({
             localStorage.setItem("token", response.data.token);
             console.log("Token set!")
             setStatus(false);
+            history.push('/dashboard')
         })
         .catch(error => console.log(error));
     }

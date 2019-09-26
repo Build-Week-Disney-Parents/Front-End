@@ -1,1 +1,1 @@
-// export const primary1 = '#5AAFE7';
+export const primary1 = '#5AAFE7';

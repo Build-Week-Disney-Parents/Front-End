@@ -31,7 +31,7 @@ main {
 
 input::placeholder {
   font-size: 1.2rem;
-  color: white;
+  color: black;
 }
 
 a {
@@ -59,6 +59,12 @@ a:hover {
 .loginBtn:hover {
   color: white;
   transform: scale(1.1);
+}
+
+.error {
+  color: rgb(224, 91, 91);
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 
