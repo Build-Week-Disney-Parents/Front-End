@@ -8,6 +8,7 @@ import QueueCard from './QueueCard';
 import User from './User'
 import Parks from '../Parks';
 import API from '../../../Utilities/API';
+import Comment from './AddComment';
 
 const BtnWrapper = styled.div`
     width: 100%;
@@ -39,15 +40,15 @@ const[users, setUsers] = useState([
     
 ]);
 
-useEffect(() => {
-    const getRequests = () => {
-        API.get('/requests')
-        .then(res => {
-            setUsers(res.data)
-        })
-    }
-    getRequests();
-}, []);
+// useEffect(() => {
+//     const getRequests = () => {
+//         API.get('/requests')
+//         .then(res => {
+//             setUsers(res.data)
+//         })
+//     }
+//     getRequests();
+// }, []);
 
 
 const buttonText = [
@@ -83,7 +84,6 @@ const fade = useSpring({opacity: 1, from: {opacity: 0}})
                         </Link>
                 ))}
                 </UserWrapper>
-                
             </div>
         </section>
     )

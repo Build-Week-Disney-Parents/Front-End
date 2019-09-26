@@ -45,9 +45,9 @@ const Wrapper = styled.div`
 
 
 
-const LoginForm = ({ errors, touched, history }) => {
+const Login = (props) => {
     const [values, setValues] = useState([]);
-
+    console.log(props)
 
     return (
         
@@ -71,7 +71,8 @@ const LoginForm = ({ errors, touched, history }) => {
     )
 }
 
-const Login = withFormik({
+export default withFormik({
+    
     mapPropsToValues: (values) => {
         return {
             username: values.username || '',
@@ -84,7 +85,7 @@ const Login = withFormik({
     //     password: yup.string().required('Password is required')
     // }),
 
-    handleSubmit: (values, { setStatus, history }) => {
+    handleSubmit: (values, { setStatus }) => {
         const {username, password } = values;
 
         API
@@ -93,11 +94,9 @@ const Login = withFormik({
             localStorage.setItem("token", response.data.token);
             console.log("Token set!")
             setStatus(false);
-            history.push('/dashboard')
         })
         .catch(error => console.log(error));
     }
     
-})(LoginForm);
+})(Login);
 
-export default Login

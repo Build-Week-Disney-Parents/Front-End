@@ -34,6 +34,7 @@ const UserCard = styled.div`
 //                 <p>{`Email: ${props.people.email}`}</p>
 //             </UserCard>
 //         </Link>
+const [buttonState, setButtonState] = useState(false);
 
 function User(props) {
     const request = props.user
@@ -45,7 +46,16 @@ function User(props) {
                 <span>{request.full_name}</span>
                 <span>{request.location}</span>
                 <span>{request.meeting_time}</span>
+                <p>{request.comment}</p>
             </div>
+            <button onClick={() => {
+                    if (buttonState !== true) {
+                        setButtonState(true);
+                    } else {
+                        setButtonState(false);
+                    }
+                }}>Add Comment</button>
+            {buttonState === false ? <Comment style={{display: 'none'}} /> : <Comment users={users} />}
         </UserCard>
 
     )
