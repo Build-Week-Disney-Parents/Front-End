@@ -78,14 +78,12 @@ const fade = useSpring({opacity: 1, from: {opacity: 0}})
                 
                 <UserWrapper style={fade}>
                     {users.map(user => (
-
-                       <QueueCard key={user.id} user={user} parkState={parkState} />
-
+                        <Link to={ `/dashboard/users/${user.id}`}>
+                             <QueueCard key={user.id} user={user} parkState={parkState} />
+                        </Link>
                 ))}
                 </UserWrapper>
-                <Route exact path='/dashboard/users/:id' 
-                       render={ (props) => 
-                       <User {...props} people={{...users.find(user => user.id == props.match.params.id)}} />} />
+                
             </div>
         </section>
     )

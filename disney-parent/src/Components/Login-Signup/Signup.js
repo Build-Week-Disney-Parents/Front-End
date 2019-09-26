@@ -47,6 +47,7 @@ const Signup = ({ errors, touched, status }) => {
                 {touched.email && errors.email && <p className='error'>{errors.email}</p>}
                 <Input type='email' name='email' placeholder='Email' /> */}
                 <Input type='text' name='username' placeholder='Username' /> 
+                <Input type='text' name='full_name' placeholder='Full Name' /> 
 
                 {touched.password && errors.password && <p className='error'>{errors.password}</p>}
                 <Input type='password' name='password' placeholder='Password' />
@@ -63,7 +64,8 @@ export default withFormik({
         return {
             // first: values.first || '',
             // last: values.last || '',
-            email: values.username || '',
+            username: values.username || '',
+            full_name: values.full_name || '',
             password: values.password || ''
         }
     },
@@ -74,10 +76,10 @@ export default withFormik({
     //     password: yup.string().required('Password is required!')
     // }),
     handleSubmit: (values, { setStatus }) => {
-        const {username, password } = values;
+        const {username, password, full_name } = values;
 
         API
-        .post("/accounts/login", { username, password })
+        .post("/accounts/register", { username, password, full_name })
         .then(response => {
             localStorage.setItem("token", response.data.token);
             console.log("Token set!")

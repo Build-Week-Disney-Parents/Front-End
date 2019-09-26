@@ -62,11 +62,6 @@ const Login = ({ errors, touched, history }) => {
 
                 {touched.password && errors.password && <p className='error'>{errors.password}</p>}
                 <Input type='password' name='password' placeholder='Password' />
-
-                <label style={{marginTop: '10px', alignSelf: 'flex-start'}}>
-                    <Field type='checkbox' name='remember' />
-                    <span style={{fontSize: '.8rem', color: 'white'}}>Remember Me?</span>
-                </label>
                 <SubmitButton type='submit'>Login</SubmitButton>
                 <SignupText>
                     <Link to='/signup' style={{color: 'white'}}>Don't have an account? Signup now!</Link>
@@ -81,8 +76,7 @@ export default withFormik({
     mapPropsToValues: (values) => {
         return {
             username: values.username || '',
-            password: values.password || '',
-            remember: values.remember || false
+            password: values.password || ''
         }
     },
 
