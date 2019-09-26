@@ -84,7 +84,7 @@ const Login = withFormik({
     //     password: yup.string().required('Password is required')
     // }),
 
-    handleSubmit: (values, { setStatus, history }) => {
+    handleSubmit: (values, { setStatus, setSubmitting, resetForm, history }) => {
         const {username, password } = values;
 
         API
@@ -93,6 +93,8 @@ const Login = withFormik({
             localStorage.setItem("token", response.data.token);
             console.log("Token set!")
             setStatus(false);
+            setSubmitting(false);
+            resetForm();
             history.push('/dashboard')
         })
         .catch(error => console.log(error));
