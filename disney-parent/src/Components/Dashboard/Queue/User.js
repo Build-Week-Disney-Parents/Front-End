@@ -20,19 +20,34 @@ const UserCard = styled.div`
 `
 
 
-const User = (props) => {
+
+// const User = (props) => {
+
+//     return (
+//         <Link to={`/dashboard/users/${props.people.id}`}>
+//             <UserCard>
+//                 <h1>{props.people.pass}</h1>
+//                 {/* <span>{props.people.email} {props.people.park} {props.people.pass} {props.people.time_slot} </span> */}
+//                 <p>{`Location: ${props.people.park}`}</p>
+//                 <p>{`Avalailable for ${props.people.time_slot}`}</p>
+//                 <p>{`Name: ${props.people.name}`}</p>
+//                 <p>{`Email: ${props.people.email}`}</p>
+//             </UserCard>
+//         </Link>
+
+function User(props) {
+    const request = props.user
 
     return (
-        <Link to={`/dashboard/users/${props.people.id}`}>
-            <UserCard>
-                <h1>{props.people.pass}</h1>
-                {/* <span>{props.people.email} {props.people.park} {props.people.pass} {props.people.time_slot} </span> */}
-                <p>{`Location: ${props.people.park}`}</p>
-                <p>{`Avalailable for ${props.people.time_slot}`}</p>
-                <p>{`Name: ${props.people.name}`}</p>
-                <p>{`Email: ${props.people.email}`}</p>
-            </UserCard>
-        </Link>
+        <UserCard>
+            <h1>{request.title}</h1>
+            <div className="information">
+                <span>{request.full_name}</span>
+                <span>{request.location}</span>
+                <span>{request.meeting_time}</span>
+            </div>
+        </UserCard>
+
     )
 }
 

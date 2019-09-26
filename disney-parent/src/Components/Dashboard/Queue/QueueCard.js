@@ -22,26 +22,30 @@ const UserCard = styled.div`
 `
 
 function QueueCard(props) {
-  
-    const people = props.person
+
+    const request = props.user
     const parks = props.parkState
    
    
     if (parks === 'All Parks') {
         return (
-            <User people={people}/>
+            <User user={request}/>
         )
-    } else if (parks != props.person.park) {
+    } else if (parks != request.location) {
         return (
             <UserCard style={{display: 'none'}}>
-                <h1>{ people.name }</h1>
-                <span>{people.email} {people.park} {people.pass} {people.time_slot} </span>
+                <h1>{request.title}</h1>
+                <div className="information">
+                    <span>{request.full_name}</span>
+                    <span>{request.location}</span>
+                    <span>{request.meeting_time}</span>
+                </div>
             </UserCard>
         )
     }
     else {
         return (
-            <User people={people}/>
+            <User user={request}/>
         )
     } 
 }

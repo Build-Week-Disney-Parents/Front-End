@@ -4,6 +4,7 @@ import SwitchUser from './SwitchUser';
 import { Field, withFormik, Form } from 'formik';
 import { primary1 } from '../Styles';
 import * as yup from 'yup';
+import API from '../../Utilities/API';
 
 const Input = styled.input`
         align-self: flex-start;
@@ -42,58 +43,34 @@ const VolunteerForm = ({
     values,
     errors,
     touched,
-    isSubmitting
+    isSubmitting,
+
 }) => {
     return(
         <>
         <SwitchUser style={{display: "flex", justifyContent: "flex-end"}} />
         <Form>
             <Div>
-            <div>
-                <h2>Please fill out form to be a volunteer!</h2>
                 <div>
-                    <label>
-                        *Name: 
-                        {  touched.name && errors.name && <p>{errors.name}</p> }
-                        <Field type="text" name="name" placeholder='Enter Name' />
-                    </label>
+                    <h2>Please fill out form to be a volunteer!</h2>
+                    <div>
+                        <Field type="text" name="title" placeholder="title" />
+                    </div>
+                    <div>
+                        <Field component="select" name="request_type">
+                            <option value="" disabled>Select Type:</option>
+                            <option value="stroller">Stroller</option>
+                            <option value="childcare">Childcare</option>
+                        </Field>
+                    </div>
                 </div>
                 <div>
-                    <label>
-                        *Email: 
-                        { touched.email && errors.email && <p>{errors.email}</p> }
-                        <Field type="email" name="email" placeholder="Email" />
-                    </label>
+                        <Field type="text" name="location"  placeholder='Location'/>
                 </div>
-                <label>
-                    <Field type="checkbox" name="childcare" checked={values.childcare} />
-                    Childcare
-                </label>
-                <label>
-                    <Field type="checkbox" name="stroller" checked={values.stroller}  />
-                    Stroller
-                </label>
-            </div>
-            <div>
-                
-                <label>
-                        <Field type="checkbox" name="magicKingdom" checked={values.magicKingdom} />
-                        Magic Kingdom
-                </label>
-                <label>
-                        <Field type="checkbox" name="animalKingdom" checked={values.animalKingdom} />
-                        Animal Kingdom
-                </label>
-                <label>
-                        <Field type="checkbox" name="epcot" checked={values.epcot} />
-                        Epcot
-                </label>
-                <label>
-                        <Field type="checkbox" name="hollywood" checked={values.hollywoood} />
-                        Hollywood Studios
-                </label>
-            </div>
-            <SubmitButton disabled={isSubmitting}>Submit</SubmitButton>
+                <div>
+                        <Field type="text" name="meeting_time"  placeholder='Meeting Time'/>
+                </div>
+                <SubmitButton disabled={isSubmitting}>Submit</SubmitButton>
             </Div>
         </Form>
         </>
@@ -101,22 +78,28 @@ const VolunteerForm = ({
 } 
 
 const Vform = withFormik({
-    mapPropsToValues(){
+    mapPropsToValues: (values) => {
         return{
-            name:'',
-            email: '',
-            childcare: false,
-            stroller: false,
-            animalKingdom: false,
-            magicKingdom: false,
-            epcot: false,
-            hollywood: false,
+            title: values.title || '',
+            request_type: values.request_type || '',
+            location: values.location || '',
+            meeting_time: values.meeting_time || ''
         }
     },
-    validationSchema: yup.object().shape({
-        name: yup.string().required('Name is required'),
-        email: yup.string().email('Valid Email Please').required(''),
-    }),
+    // validationSchema: yup.object().shape({
+    //     name: yup.string().required('Name is required'),
+    //     email: yup.string().email('Valid Email Please').required(''),
+    // }),
+    handleSubmit: (values, { setStatus }) => {
+        API.post('/requests', values)
+        .then((res) => {
+            setStatus(res.data)
+            console.log(res.data)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
 })(VolunteerForm)
 
 export default Vform

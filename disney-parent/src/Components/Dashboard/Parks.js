@@ -22,6 +22,7 @@ const ParkBtn = styled.button`
 
 function Parks(props) {
     const showText = props.text
+    const parks = props.user.location
         return (
             <div>
                 <Button.Group>
