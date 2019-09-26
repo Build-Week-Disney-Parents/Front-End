@@ -21,13 +21,19 @@ const UserCard = styled.div`
     `
 
 
-const UserCards = (props) => {
-    const people = props.people
-    console.log(props)
+const UserCards = ({pass, park, time_slot, name, email}) => {
+    
         return (
-            
-              <User people={people} />
-            
+            <div>
+              <UserCard >
+                <h1>{pass}</h1>
+                {/* <span>{props.people.email} {props.people.park} {props.people.pass} {props.people.time_slot} </span> */}
+                <p>{`Location: ${park}`}</p>
+                <p>{`Avalailable for ${time_slot}`}</p>
+                <p>{`Name: ${name}`}</p>
+                <p>{`Email: ${email}`}</p>
+            </UserCard>
+            </div>
         )
     }
     
