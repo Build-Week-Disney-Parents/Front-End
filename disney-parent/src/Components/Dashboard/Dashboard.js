@@ -1,4 +1,9 @@
 // import React, { useState } from 'react';
+// import { useSpring, animated } from 'react-spring';
+// import styled from 'styled-components';
+// import SwitchUser from '../SwitchUser';
+// import QueueCard from './QueueCard';
+// import Parks from '../Parks';
 // import Queue from './Queue/Queue';
 
 // function Dashboard() {
@@ -116,7 +121,23 @@
 
 //     return (
 //         <div>
-//             <Queue users={users} key={users.id} />
+//             {/* <Queue users={users} key={users.id} /> */}
+//             <section>
+//             <div>
+//                 <BtnWrapper>
+//                     {buttonText.map(text => (
+//                         <Parks key={text.id} text={text} setParkState={setParkState} />
+//                     ))}
+//                     <SwitchUser />
+//                 </BtnWrapper>
+                
+//                 <UserWrapper style={fade}>
+//                     {users.map(user => (
+//                        <QueueCard key={user.id} person={user} parkState={parkState} />
+//                 ))}
+//                 </UserWrapper>
+//             </div>
+//         </section>
 //         </div>
 //     )
 // }

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSpring, animated } from 'react-spring';
 import Axios from 'axios';
+import { Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SwitchUser from '../SwitchUser';
 import QueueCard from './QueueCard';
+import User from './User'
 import Parks from '../Parks';
 import API from '../../../Utilities/API';
 
@@ -29,7 +31,7 @@ const UserWrapper = styled(animated.div)`
 
 
 
-const Queue = () => {
+function Queue(props) {
 
 
     // title, description, meeting_time, request_type, location
@@ -47,6 +49,7 @@ useEffect(() => {
     getRequests();
 }, []);
 
+
 const buttonText = [
     'All Parks',
     'Magic Kingdom',
@@ -54,21 +57,14 @@ const buttonText = [
     'Hollywood Studios',
     'Epcot'
 ]
-
+// useState for Park nav
 const [parkState, setParkState] = useState('All Parks');
 
 // usestate for triggering the animation
 const [isToggled, setToggle] = useState(false);
 
-console.log(parkState)
-
 // animation
 const fade = useSpring({opacity: 1, from: {opacity: 0}})
-
-
-
-
-
 
     return(
         <section>
@@ -82,9 +78,14 @@ const fade = useSpring({opacity: 1, from: {opacity: 0}})
                 
                 <UserWrapper style={fade}>
                     {users.map(user => (
+
                        <QueueCard key={user.id} user={user} parkState={parkState} />
+
                 ))}
                 </UserWrapper>
+                <Route exact path='/dashboard/users/:id' 
+                       render={ (props) => 
+                       <User {...props} people={{...users.find(user => user.id == props.match.params.id)}} />} />
             </div>
         </section>
     )

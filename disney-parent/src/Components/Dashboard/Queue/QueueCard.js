@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import User from './User';
 import styled from 'styled-components';
 
 
+
 const UserCard = styled.div`
     width: 30%;
-    height: 20vh;
+    height: 50vh;
     background: white;
     border-radius: 10px;
     padding: 10px;
@@ -21,9 +22,11 @@ const UserCard = styled.div`
 `
 
 function QueueCard(props) {
+
     const request = props.user
     const parks = props.parkState
-
+   
+   
     if (parks === 'All Parks') {
         return (
             <User user={request}/>
