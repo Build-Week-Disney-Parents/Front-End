@@ -66,7 +66,7 @@ const Login = ({ errors, touched, status }) => {
                     <Field type='checkbox' name='remember' />
                     <span style={{fontSize: '.8rem', color: 'white'}}>Remember Me?</span>
                 </label>
-                <button type='submit'>Login</button>
+                <Link to='/dashboard'>Login</Link>
                 <SignupText>
                     <Link to='/signup' style={{color: 'white'}}>Don't have an account? Signup now!</Link>
                 </SignupText>

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { Link, Route } from 'react-router-dom';
 
 const UserCard = styled.div`
-    width: 30%;
-    height: auto;
+    width: 80%;
+    height: 50vh;
     background: white;
     border-radius: 10px;
     padding: 10px;
@@ -20,16 +20,19 @@ const UserCard = styled.div`
 `
 
 
-function User(props) {
+const User = (props) => {
+
     return (
-        <UserCard>
-            <h1>{props.people.pass}</h1>
-            {/* <span>{props.people.email} {props.people.park} {props.people.pass} {props.people.time_slot} </span> */}
-            <p>{`Location: ${props.people.park}`}</p>
-            <p>{`Avalailable for ${props.people.time_slot}`}</p>
-            <p>{`Name: ${props.people.name}`}</p>
-            <p>{`Email: ${props.people.email}`}</p>
-        </UserCard>
+        <Link to={`/dashboard/users/${props.people.id}`}>
+            <UserCard>
+                <h1>{props.people.pass}</h1>
+                {/* <span>{props.people.email} {props.people.park} {props.people.pass} {props.people.time_slot} </span> */}
+                <p>{`Location: ${props.people.park}`}</p>
+                <p>{`Avalailable for ${props.people.time_slot}`}</p>
+                <p>{`Name: ${props.people.name}`}</p>
+                <p>{`Email: ${props.people.email}`}</p>
+            </UserCard>
+        </Link>
     )
 }
 

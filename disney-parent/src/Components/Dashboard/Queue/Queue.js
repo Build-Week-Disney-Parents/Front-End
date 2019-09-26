@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSpring, animated } from 'react-spring';
 import Axios from 'axios';
+import { Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SwitchUser from '../SwitchUser';
 import QueueCard from './QueueCard';
+import User from './User'
 import Parks from '../Parks';
 
 const BtnWrapper = styled.div`
@@ -43,7 +45,7 @@ const UserWrapper = styled(animated.div)`
 
 
 
-const Queue = () => {
+function Queue(props) {
 
 const[users, setUsers] = useState([
     {
@@ -156,6 +158,9 @@ const[users, setUsers] = useState([
     }
 ]);
 
+// const onClick = setUsers()
+
+
 const buttonText = [
     'All Parks',
     'Magic Kingdom',
@@ -163,21 +168,14 @@ const buttonText = [
     'Hollywood Studios',
     'Epcot'
 ]
-
+// useState for Park nav
 const [parkState, setParkState] = useState('All Parks');
 
 // usestate for triggering the animation
 const [isToggled, setToggle] = useState(false);
 
-console.log(parkState)
-
 // animation
 const fade = useSpring({opacity: 1, from: {opacity: 0}})
-
-
-
-
-
 
     return(
         <section>
@@ -191,66 +189,18 @@ const fade = useSpring({opacity: 1, from: {opacity: 0}})
                 
                 <UserWrapper style={fade}>
                     {users.map(user => (
-                       <QueueCard key={user.id} person={user} parkState={parkState} />
+                        
+                            <QueueCard key={user.id} person={user} parkState={parkState} />
+                        
                 ))}
                 </UserWrapper>
+                <Route exact path='/dashboard/users/:id' 
+                       render={ (props) => 
+                       <User {...props} people={{...users.find(user => user.id == props.match.params.id)}} />} />
             </div>
         </section>
     )
 }
-
-// function QueueCard(props) {
-//     // const[name, email, park, pass, time_slot] = person;
-//     const people = props.person
-//     const parks = props.parkState
-
-//     if (parks === 'All Parks') {
-//         return (
-//             <User people={people}/>
-//         )
-//     } else if (parks != props.person.park) {
-//         return (
-//             <UserCard style={{display: 'none'}}>
-//                 <h1>{ people.name }</h1>
-//                 <span>{people.email} {people.park} {people.pass} {people.time_slot} </span>
-//             </UserCard>
-//         )
-//     }
-//     else {
-//         return (
-//             <User people={people}/>
-//         )
-//     } 
-// }
-// function User(props) {
-//     return (
-//         <UserCard>
-//             <h1>{props.people.pass}</h1>
-//             {/* <span>{props.people.email} {props.people.park} {props.people.pass} {props.people.time_slot} </span> */}
-//             <p>{`Location: ${props.people.park}`}</p>
-//             <p>{`Avalailable for ${props.people.time_slot}`}</p>
-//             <p>{`Name: ${props.people.name}`}</p>
-//             <p>{`Email: ${props.people.email}`}</p>
-//         </UserCard>
-//     )
-// }
-
-
-
-
-
-// function Parks(props) {
-//     const showText = props.text
-//         return (
-//             <div>
-//                 <Button.Group>
-//                     <ParkBtn onClick={() => props.setParkState(showText)}>{showText}</ParkBtn>
-//                 </Button.Group>
-//             </div>
-            
-//         )
-//     }
-
 
 export default Queue
 
