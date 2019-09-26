@@ -60,6 +60,7 @@ const buttonText = [
 ]
 // useState for Park nav
 const [parkState, setParkState] = useState('All Parks');
+const [buttonState, setButtonState] = useState(false);
 
 // usestate for triggering the animation
 const [isToggled, setToggle] = useState(false);
@@ -80,7 +81,7 @@ const fade = useSpring({opacity: 1, from: {opacity: 0}})
                 <UserWrapper style={fade}>
                     {users.map(user => (
                         <Link to={ `/dashboard/users/${user.id}`}>
-                             <QueueCard key={user.id} user={user} parkState={parkState} />
+                             <QueueCard key={user.id} user={user} parkState={parkState} buttonState={buttonState} setButtonState={setButtonState} />
                         </Link>
                 ))}
                 </UserWrapper>

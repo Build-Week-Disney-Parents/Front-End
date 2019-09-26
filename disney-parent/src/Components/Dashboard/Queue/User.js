@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link, Route } from 'react-router-dom';
+import Comment from './AddComment';
 
 const UserCard = styled.div`
     width: 80%;
@@ -34,7 +35,6 @@ const UserCard = styled.div`
 //                 <p>{`Email: ${props.people.email}`}</p>
 //             </UserCard>
 //         </Link>
-const [buttonState, setButtonState] = useState(false);
 
 function User(props) {
     const request = props.user
@@ -49,13 +49,13 @@ function User(props) {
                 <p>{request.comment}</p>
             </div>
             <button onClick={() => {
-                    if (buttonState !== true) {
-                        setButtonState(true);
+                    if (props.buttonState !== true) {
+                        props.setButtonState(true);
                     } else {
-                        setButtonState(false);
+                        props.setButtonState(false);
                     }
                 }}>Add Comment</button>
-            {buttonState === false ? <Comment style={{display: 'none'}} /> : <Comment users={users} />}
+            {props.buttonState === false ? <Comment style={{display: 'none'}} /> : <Comment request={request} />}
         </UserCard>
 
     )
