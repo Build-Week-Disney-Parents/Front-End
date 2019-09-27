@@ -7,7 +7,7 @@ import * as yup from 'yup';
 import API from '../../Utilities/API';
 import { Link } from 'react-router-dom'
 
-const Input = styled.input`
+const Input = styled(Field)`
         align-self: flex-start;
         width: 97%;
         margin-top: 10px;
@@ -16,17 +16,14 @@ const Input = styled.input`
         background: transparent;
         border: 1px solid white;
         border-radius: 10px;
-        color: black;
+        color: white;
     `
 
-const Div = styled.div`
+const Wrapper = styled.div`
+        width: 400px;
         text-align: center;
-        background: rgba(255,255,255,0.3);
-        width: 65%;
-        border-radius: 10px;
         margin: 0 auto;
-    
-`
+    `
 const SubmitButton = styled.button`
         padding: 10px 0;
         width: 60%;
@@ -34,6 +31,7 @@ const SubmitButton = styled.button`
         align-self: flex-start;
         background: ${primary1};
         color: white;
+        border: none;
         font-size: 1.2rem;
         margin-top: 10px;
         border-radius: 10px;
@@ -53,7 +51,7 @@ const VolunteerForm = ({
             <Link to='/dashboard'>Back to User</Link>
         </button>
         <Form>
-            <Div>
+            <Wrapper>
                 <div>
                     <h2>Please fill out form to be a volunteer!</h2>
                     <div>
@@ -68,17 +66,24 @@ const VolunteerForm = ({
                             <option value="childcare">Childcare</option>
                         </Field>
                     </div>
-                </div>
-                <div>
-                        Location: 
-                        <Field type="text" name="location"  placeholder='Location'/>
+                    <div>
+                        Select a Park: 
+                        <Field component="select" name="location">
+                            <option value="" disabled>Select Park:</option>
+                            <option value="All Parks">All Parks</option>
+                            <option value="Magic Kingdom">Magic Kingdom</option>
+                            <option value="Animal Kingdom">Animal Kingdom</option>
+                            <option value="Hollywood Studios">Hollywood Studios</option>
+                            <option value="Epcot">Epcot</option>
+                        </Field>
+                    </div>
                 </div>
                 <div>
                         Meeting: 
                         <Field type="text" name="meeting_time"  placeholder='Meeting Time'/>
                 </div>
                 <SubmitButton disabled={isSubmitting}>Submit</SubmitButton>
-            </Div>
+            </Wrapper>
         </Form>
         </>
     )
@@ -97,11 +102,14 @@ const Vform = withFormik({
     //     name: yup.string().required('Name is required'),
     //     email: yup.string().email('Valid Email Please').required(''),
     // }),
-    handleSubmit: (values, { setStatus }) => {
+    handleSubmit: (values, { setStatus, setSubmitting, resetForm }) => {
         API.post('/requests', values)
         .then((res) => {
+            localStorage.setItem("token", res.data.token);
             setStatus(res.data)
-            console.log(res.data)
+            console.log(res)
+            setSubmitting(false);
+            resetForm();
         })
         .catch((err) => {
             console.log(err)

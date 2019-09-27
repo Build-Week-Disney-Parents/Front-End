@@ -5,10 +5,10 @@ import { Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SwitchUser from '../SwitchUser';
 import QueueCard from './QueueCard';
-import User from './User'
+import UserCards from './UserCard/UserCard'
 import Parks from '../Parks';
 import API from '../../../Utilities/API';
-import Comment from './AddComment';
+
 
 const BtnWrapper = styled.div`
     width: 100%;
@@ -26,16 +26,7 @@ const UserWrapper = styled(animated.div)`
 `
 
 
-
-
-
-
-
-
 function Queue(props) {
-
-
-    // title, description, meeting_time, request_type, location
 const[users, setUsers] = useState([
     
 ]);
@@ -80,11 +71,15 @@ const fade = useSpring({opacity: 1, from: {opacity: 0}})
                 
                 <UserWrapper style={fade}>
                     {users.map(user => (
-                        <Link to={ `/dashboard/users/${user.id}`}>
-                             <QueueCard key={user.id} user={user} parkState={parkState} buttonState={buttonState} setButtonState={setButtonState} />
-                        </Link>
+                     <QueueCard key={user.id} user={user} parkState={parkState} buttonState={buttonState} setButtonState={setButtonState} />
                 ))}
                 </UserWrapper>
+                <Route exact path='/dashboard/users/:id' 
+                       render={ (props) => 
+                       <UserCards {...props} 
+                              user={{...users.find(user => user.id == props.match.params.id)}}
+                              buttonState={buttonState}
+                              setButtonState={setButtonState}/>} />
             </div>
         </section>
     )

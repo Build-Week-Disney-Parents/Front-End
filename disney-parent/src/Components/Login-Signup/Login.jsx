@@ -7,7 +7,7 @@ import { primary1 } from '../Styles';
 import API from '../../Utilities/API';
 
 
-const Wrapper = styled.div`
+    const Wrapper = styled.div`
         width: 400px;
         text-align: center;
         margin: 0 auto;
@@ -27,6 +27,11 @@ const Wrapper = styled.div`
         font-size: 1.2rem;
         margin-top: 10px;
         border-radius: 10px;
+        transition: all .3s ease-in-out;
+
+        :hover {
+            transform: scale(1.1);
+        }
     `
     const Input = styled(Field)`
         align-self: flex-start;
@@ -47,7 +52,15 @@ const Wrapper = styled.div`
 
 const Login = (props) => {
     const [values, setValues] = useState([]);
-    console.log(props)
+    const pageHistory = () => {
+        props.history.push('/dashboard')
+    }
+
+    useEffect(() => {
+        if (props.status) {
+        setValues([...values, props.status])
+        pageHistory();
+    }},[props.status])
 
     const forward = () => props.history.push('/dashboard');
 
@@ -66,13 +79,13 @@ const Login = (props) => {
                 alignContent: 'center',
                 }}>
                 <Wrapper>
-                <Input type="text" name="username" placeholder="Username" />
+                    <Input type="text" name="username" placeholder="Username" />
 
-                <Input type="password" name="password" placeholder="Password" />
-                <SubmitButton type="submit">Login</SubmitButton>
-                <SignupText>
-                    <Link to='/signup' style={{color: 'white'}}>Don't have an account? Signup now!</Link>
-                </SignupText>
+                    <Input type="password" name="password" placeholder="Password" />
+                    <SubmitButton type="submit">Login</SubmitButton>
+                    <SignupText>
+                        <Link to='/signup' style={{color: 'white'}}>Don't have an account? Signup now!</Link>
+                    </SignupText>
                 </Wrapper>
             </Form>
         
@@ -103,11 +116,15 @@ export default withFormik({
             localStorage.setItem("token", response.data.token);
             console.log("Token set!")
             setStatus(response.data);
+            console.log(response)
             setSubmitting(false);
             resetForm();
         })
-        .catch(error => console.log(error));
-    }
+        .catch(error => {
+           console.log(error);
+           alert(error.response.data) 
+        }
+        )}
     
 })(Login);
 

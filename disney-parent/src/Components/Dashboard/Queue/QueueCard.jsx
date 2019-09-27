@@ -27,7 +27,7 @@ function QueueCard(props) {
     const parks = props.parkState
    
    
-    if (parks === 'All Parks') {
+    if (parks == 'All Parks') {
         return (
             <User user={request}/>
         )
@@ -36,7 +36,7 @@ function QueueCard(props) {
             <UserCard style={{display: 'none'}}>
                 <h1>{request.title}</h1>
                 <div className="information">
-                    <span>{request.full_name}</span>
+                    <span>{request.username}</span>
                     <span>{request.location}</span>
                     <span>{request.meeting_time}</span>
                 </div>
