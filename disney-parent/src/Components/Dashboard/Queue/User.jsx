@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link, Route } from 'react-router-dom';
-import Comment from './AddComment';
+
 
 const UserCard = styled.div`
     width: 80%;
@@ -32,14 +32,14 @@ function User(props) {
                 <span>{request.meeting_time}</span>
                 <p>{request.comment}</p>
             </div>
-            <button onClick={() => {
+            {/* <button onClick={() => {
                     if (props.buttonState !== true) {
                         props.setButtonState(true);
                     } else {
                         props.setButtonState(false);
                     }
                 }}>Add Comment</button>
-            {props.buttonState === false ? <Comment style={{display: 'none'}} /> : <Comment request={request} />}
+            {props.buttonState === false ? <Comment style={{display: 'none'}} /> : <Comment request={request} />} */}
         </UserCard>
         </Link>
 

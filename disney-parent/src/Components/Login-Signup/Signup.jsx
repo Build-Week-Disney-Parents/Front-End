@@ -95,7 +95,7 @@ export default withFormik({
     //     email: yup.string().required('Email is required!'),
     //     password: yup.string().required('Password is required!')
     // }),
-    handleSubmit: (values, { setStatus }) => {
+    handleSubmit: (values, { setStatus, setSubmitting, resetForm }) => {
         const {username, password, full_name } = values;
 
         API
@@ -103,7 +103,9 @@ export default withFormik({
         .then(response => {
             localStorage.setItem("token", response.data.token);
             console.log("Token set!");
-            setStatus(false);
+            setStatus(response.data);
+            setSubmitting(false);
+            resetForm();
         })
         .catch(error => console.log(error));
     }

@@ -5,6 +5,7 @@ import { Field, withFormik, Form } from 'formik';
 import { primary1 } from '../Styles';
 import * as yup from 'yup';
 import API from '../../Utilities/API';
+import { Link } from 'react-router-dom'
 
 const Input = styled(Field)`
         align-self: flex-start;
@@ -46,26 +47,40 @@ const VolunteerForm = ({
 }) => {
     return(
         <>
-        <SwitchUser style={{display: "flex", justifyContent: "flex-end"}} />
+        <button>
+            <Link to='/dashboard'>Back to User</Link>
+        </button>
         <Form>
             <Wrapper>
                 <div>
-                    <h2 style={{color: 'white'}}>Please fill out form to be a volunteer!</h2>
-                        {/* <Input type="text" name="title" placeholder="title" /> */}
-                        <Input type="text" name="title" placeholder="title" />
+                    <h2>Please fill out form to be a volunteer!</h2>
                     <div>
+                        Name: 
+                        <Field type="text" name="title" placeholder="title" />
+                    </div>
+                    <div>
+                        Select a Pass: 
                         <Field component="select" name="request_type">
                             <option value="" disabled>Select Type:</option>
                             <option value="stroller">Stroller</option>
                             <option value="childcare">Childcare</option>
                         </Field>
                     </div>
+                    <div>
+                        Select a Park: 
+                        <Field component="select" name="location">
+                            <option value="" disabled>Select Park:</option>
+                            <option value="All Parks">All Parks</option>
+                            <option value="Magic Kingdom">Magic Kingdom</option>
+                            <option value="Animal Kingdom">Animal Kingdom</option>
+                            <option value="Hollywood Studios">Hollywood Studios</option>
+                            <option value="Epcot">Epcot</option>
+                        </Field>
+                    </div>
                 </div>
                 <div>
-                        <Input type="text" name="location"  placeholder='Location'/>
-                </div>
-                <div>
-                        <Input type="text" name="meeting_time"  placeholder='Meeting Time'/>
+                        Meeting: 
+                        <Field type="text" name="meeting_time"  placeholder='Meeting Time'/>
                 </div>
                 <SubmitButton disabled={isSubmitting}>Submit</SubmitButton>
             </Wrapper>
@@ -87,11 +102,14 @@ const Vform = withFormik({
     //     name: yup.string().required('Name is required'),
     //     email: yup.string().email('Valid Email Please').required(''),
     // }),
-    handleSubmit: (values, { setStatus }) => {
+    handleSubmit: (values, { setStatus, setSubmitting, resetForm }) => {
         API.post('/requests', values)
         .then((res) => {
+            localStorage.setItem("token", res.data.token);
             setStatus(res.data)
-            console.log(res.data)
+            console.log(res)
+            setSubmitting(false);
+            resetForm();
         })
         .catch((err) => {
             console.log(err)

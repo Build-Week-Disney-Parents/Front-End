@@ -5,10 +5,10 @@ import { Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SwitchUser from '../SwitchUser';
 import QueueCard from './QueueCard';
-import User from './User'
+import UserCards from './UserCard/UserCard'
 import Parks from '../Parks';
 import API from '../../../Utilities/API';
-import Comment from './AddComment';
+
 
 const BtnWrapper = styled.div`
     width: 100%;
@@ -76,7 +76,10 @@ const fade = useSpring({opacity: 1, from: {opacity: 0}})
                 </UserWrapper>
                 <Route exact path='/dashboard/users/:id' 
                        render={ (props) => 
-                       <User {...props} user={{...users.find(user => user.id == props.match.params.id)}} />} />
+                       <UserCards {...props} 
+                              user={{...users.find(user => user.id == props.match.params.id)}}
+                              buttonState={buttonState}
+                              setButtonState={setButtonState}/>} />
             </div>
         </section>
     )

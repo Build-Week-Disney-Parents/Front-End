@@ -62,6 +62,15 @@ const Login = (props) => {
         pageHistory();
     }},[props.status])
 
+    const forward = () => props.history.push('/dashboard');
+
+    useEffect(() => {
+
+        if (props.status) {
+        setValues([...values, props.status])
+        forward();
+    }},[props.status])
+
     return (
         
             <Form style={{
@@ -98,7 +107,7 @@ export default withFormik({
     //     password: yup.string().required('Password is required')
     // }),
 
-    handleSubmit: (values, { setStatus }) => {
+    handleSubmit: (values, { setStatus, setSubmitting, resetForm}) => {
         const {username, password } = values;
 
         API
@@ -106,10 +115,16 @@ export default withFormik({
         .then(response => {
             localStorage.setItem("token", response.data.token);
             console.log("Token set!")
-            setStatus(false);
+            setStatus(response.data);
+            console.log(response)
+            setSubmitting(false);
+            resetForm();
         })
-        .catch(error => console.log(error.response.data));
-    }
+        .catch(error => {
+           console.log(error);
+           alert(error.response.data) 
+        }
+        )}
     
 })(Login);
 
