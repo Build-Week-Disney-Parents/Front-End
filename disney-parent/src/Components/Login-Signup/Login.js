@@ -45,9 +45,9 @@ const Wrapper = styled.div`
 
 
 
-const LoginForm = ({ errors, touched, history }) => {
+const Login = (props) => {
     const [values, setValues] = useState([]);
-
+    console.log(props)
 
     return (
         
@@ -71,7 +71,8 @@ const LoginForm = ({ errors, touched, history }) => {
     )
 }
 
-const Login = withFormik({
+export default withFormik({
+    
     mapPropsToValues: (values) => {
         return {
             username: values.username || '',
@@ -100,6 +101,5 @@ const Login = withFormik({
         .catch(error => console.log(error));
     }
     
-})(LoginForm);
+})(Login);
 
-export default Login

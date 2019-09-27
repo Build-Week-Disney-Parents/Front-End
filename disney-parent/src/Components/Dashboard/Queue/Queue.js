@@ -8,6 +8,7 @@ import QueueCard from './QueueCard';
 import User from './User'
 import Parks from '../Parks';
 import API from '../../../Utilities/API';
+import Comment from './AddComment';
 
 const BtnWrapper = styled.div`
     width: 100%;
@@ -39,15 +40,15 @@ const[users, setUsers] = useState([
     
 ]);
 
-useEffect(() => {
-    const getRequests = () => {
-        API.get('/requests')
-        .then(res => {
-            setUsers(res.data)
-        })
-    }
-    getRequests();
-}, []);
+// useEffect(() => {
+//     const getRequests = () => {
+//         API.get('/requests')
+//         .then(res => {
+//             setUsers(res.data)
+//         })
+//     }
+//     getRequests();
+// }, []);
 
 
 const buttonText = [
@@ -59,6 +60,7 @@ const buttonText = [
 ]
 // useState for Park nav
 const [parkState, setParkState] = useState('All Parks');
+const [buttonState, setButtonState] = useState(false);
 
 // usestate for triggering the animation
 const [isToggled, setToggle] = useState(false);
@@ -79,11 +81,10 @@ const fade = useSpring({opacity: 1, from: {opacity: 0}})
                 <UserWrapper style={fade}>
                     {users.map(user => (
                         <Link to={ `/dashboard/users/${user.id}`}>
-                             <QueueCard key={user.id} user={user} parkState={parkState} />
+                             <QueueCard key={user.id} user={user} parkState={parkState} buttonState={buttonState} setButtonState={setButtonState} />
                         </Link>
                 ))}
                 </UserWrapper>
-                
             </div>
         </section>
     )
