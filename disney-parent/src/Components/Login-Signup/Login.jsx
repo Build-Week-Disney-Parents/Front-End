@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Field, withFormik } from 'formik';
 import * as yup from 'yup';
@@ -49,6 +49,15 @@ const Login = (props) => {
     const [values, setValues] = useState([]);
     console.log(props)
 
+    const forward = () => props.history.push('/dashboard');
+
+    useEffect(() => {
+
+        if (props.status) {
+        setValues([...values, props.status])
+        forward();
+    }},[props.status])
+
     return (
         
             <Form style={{
@@ -85,7 +94,7 @@ export default withFormik({
     //     password: yup.string().required('Password is required')
     // }),
 
-    handleSubmit: (values, { setStatus, setSubmitting, resetForm, history }) => {
+    handleSubmit: (values, { setStatus, setSubmitting, resetForm}) => {
         const {username, password } = values;
 
         API
@@ -93,10 +102,9 @@ export default withFormik({
         .then(response => {
             localStorage.setItem("token", response.data.token);
             console.log("Token set!")
-            setStatus(false);
+            setStatus(response.data);
             setSubmitting(false);
             resetForm();
-            history.push('/dashboard')
         })
         .catch(error => console.log(error));
     }

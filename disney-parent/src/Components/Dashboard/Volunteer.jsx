@@ -5,6 +5,7 @@ import { Field, withFormik, Form } from 'formik';
 import { primary1 } from '../Styles';
 import * as yup from 'yup';
 import API from '../../Utilities/API';
+import { Link } from 'react-router-dom'
 
 const Input = styled.input`
         align-self: flex-start;
@@ -48,15 +49,19 @@ const VolunteerForm = ({
 }) => {
     return(
         <>
-        <SwitchUser style={{display: "flex", justifyContent: "flex-end"}} />
+        <button>
+            <Link to='/dashboard'>Back to User</Link>
+        </button>
         <Form>
             <Div>
                 <div>
                     <h2>Please fill out form to be a volunteer!</h2>
                     <div>
+                        Name: 
                         <Field type="text" name="title" placeholder="title" />
                     </div>
                     <div>
+                        Select a Pass: 
                         <Field component="select" name="request_type">
                             <option value="" disabled>Select Type:</option>
                             <option value="stroller">Stroller</option>
@@ -65,9 +70,11 @@ const VolunteerForm = ({
                     </div>
                 </div>
                 <div>
+                        Location: 
                         <Field type="text" name="location"  placeholder='Location'/>
                 </div>
                 <div>
+                        Meeting: 
                         <Field type="text" name="meeting_time"  placeholder='Meeting Time'/>
                 </div>
                 <SubmitButton disabled={isSubmitting}>Submit</SubmitButton>

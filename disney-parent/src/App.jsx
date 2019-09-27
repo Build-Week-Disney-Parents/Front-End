@@ -11,11 +11,9 @@ import QueueCard from './Components/Dashboard/Queue/QueueCard'
 
 
 function App() {
-  
-  
 
   return ( 
-    
+
     <div className='container'>
       <Welcome />
       <Route exact path='/' render={props => <Login {...props} />} />

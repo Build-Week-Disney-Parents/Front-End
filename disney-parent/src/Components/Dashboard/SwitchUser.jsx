@@ -12,8 +12,9 @@ function SwitchUser() {
 
     return (
         <styledLink>
-            <Link to='/dashboard'>User</Link>
-            <Link to='/volunteer-dashboard'>Volunteer</Link>
+            <button>
+                <Link to='/volunteer-dashboard'>Add a Volunteer</Link>
+            </button>
         </styledLink>
         
         

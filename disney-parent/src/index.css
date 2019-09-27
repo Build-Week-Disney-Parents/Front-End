@@ -24,7 +24,7 @@ main {
 
 .container {
   padding: 5%;
-  height: auto;
+  min-height: 100vh;
   background: linear-gradient(to right, rgba(81, 178, 207, 0.7) 0%, rgba(7, 126, 170, 0.8) 30%, rgba(2, 4, 5, 0.3) 50%, rgba(22, 43, 51, 0.6) 100%), url('./disney.jpg') no-repeat 50% 50%;
   background-size: cover;
 }
