@@ -5,16 +5,16 @@ import styled from 'styled-components';
 
 function SwitchUser() {
 
-    const styledLink = styled.div`
+    const StyledLink = styled.div`
     display: flex;
     justify-content: center;
     `
 
     return (
-        <styledLink>
+        <StyledLink>
             <Link to='/dashboard'>User</Link>
             <Link to='/volunteer-dashboard'>Volunteer</Link>
-        </styledLink>
+        </StyledLink>
         
         
     )

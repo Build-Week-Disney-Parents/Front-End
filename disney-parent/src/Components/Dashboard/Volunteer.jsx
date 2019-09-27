@@ -6,7 +6,7 @@ import { primary1 } from '../Styles';
 import * as yup from 'yup';
 import API from '../../Utilities/API';
 
-const Input = styled.input`
+const Input = styled(Field)`
         align-self: flex-start;
         width: 97%;
         margin-top: 10px;
@@ -15,17 +15,14 @@ const Input = styled.input`
         background: transparent;
         border: 1px solid white;
         border-radius: 10px;
-        color: black;
+        color: white;
     `
 
-const Div = styled.div`
+const Wrapper = styled.div`
+        width: 400px;
         text-align: center;
-        background: rgba(255,255,255,0.3);
-        width: 65%;
-        border-radius: 10px;
         margin: 0 auto;
-    
-`
+    `
 const SubmitButton = styled.button`
         padding: 10px 0;
         width: 60%;
@@ -33,6 +30,7 @@ const SubmitButton = styled.button`
         align-self: flex-start;
         background: ${primary1};
         color: white;
+        border: none;
         font-size: 1.2rem;
         margin-top: 10px;
         border-radius: 10px;
@@ -50,12 +48,11 @@ const VolunteerForm = ({
         <>
         <SwitchUser style={{display: "flex", justifyContent: "flex-end"}} />
         <Form>
-            <Div>
+            <Wrapper>
                 <div>
-                    <h2>Please fill out form to be a volunteer!</h2>
-                    <div>
-                        <Field type="text" name="title" placeholder="title" />
-                    </div>
+                    <h2 style={{color: 'white'}}>Please fill out form to be a volunteer!</h2>
+                        {/* <Input type="text" name="title" placeholder="title" /> */}
+                        <Input type="text" name="title" placeholder="title" />
                     <div>
                         <Field component="select" name="request_type">
                             <option value="" disabled>Select Type:</option>
@@ -65,13 +62,13 @@ const VolunteerForm = ({
                     </div>
                 </div>
                 <div>
-                        <Field type="text" name="location"  placeholder='Location'/>
+                        <Input type="text" name="location"  placeholder='Location'/>
                 </div>
                 <div>
-                        <Field type="text" name="meeting_time"  placeholder='Meeting Time'/>
+                        <Input type="text" name="meeting_time"  placeholder='Meeting Time'/>
                 </div>
                 <SubmitButton disabled={isSubmitting}>Submit</SubmitButton>
-            </Div>
+            </Wrapper>
         </Form>
         </>
     )

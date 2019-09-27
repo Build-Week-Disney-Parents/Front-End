@@ -12,29 +12,12 @@ const UserCard = styled.div`
     text-align: center;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
     margin-top: 20px;
-
     transition: all .3s;
 
     :hover {
         transform: translateY(-10px);
     }
 `
-
-
-
-// const User = (props) => {
-
-//     return (
-//         <Link to={`/dashboard/users/${props.people.id}`}>
-//             <UserCard>
-//                 <h1>{props.people.pass}</h1>
-//                 {/* <span>{props.people.email} {props.people.park} {props.people.pass} {props.people.time_slot} </span> */}
-//                 <p>{`Location: ${props.people.park}`}</p>
-//                 <p>{`Avalailable for ${props.people.time_slot}`}</p>
-//                 <p>{`Name: ${props.people.name}`}</p>
-//                 <p>{`Email: ${props.people.email}`}</p>
-//             </UserCard>
-//         </Link>
 
 function User(props) {
     const request = props.user

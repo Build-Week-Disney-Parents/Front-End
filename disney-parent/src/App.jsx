@@ -19,7 +19,7 @@ function App() {
     <div className='container'>
       <Welcome />
       <Route exact path='/' render={props => <Login {...props} />} />
-      <Route path='/signup' component={Signup} />
+      <Route path='/signup' render={props => <Signup {...props} />} />
       <Route path='/dashboard' component={Queue} />
       <Route path='/volunteer-dashboard' component={Vform} />
       <Route exact path='/dashboard/users/:id' render={ (props) => <User {...props}  />} />

@@ -40,15 +40,15 @@ const[users, setUsers] = useState([
     
 ]);
 
-// useEffect(() => {
-//     const getRequests = () => {
-//         API.get('/requests')
-//         .then(res => {
-//             setUsers(res.data)
-//         })
-//     }
-//     getRequests();
-// }, []);
+useEffect(() => {
+    const getRequests = () => {
+        API.get('/requests')
+        .then(res => {
+            setUsers(res.data)
+        })
+    }
+    getRequests();
+}, []);
 
 
 const buttonText = [

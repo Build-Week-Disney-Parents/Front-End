@@ -9,7 +9,7 @@ function AddComment({ values, errors, touched, isSubmitting, users }) {
     return (
         <div>
             <Form>
-                <h1>{`${users.username} says: `}</h1>
+                {/* <h1>{`${users.username} says: `}</h1> */}
                 <Field type="text" name="comment" placeholder="Type Here" />
                 <button type="submit">Submit Comment</button>
             </Form>
