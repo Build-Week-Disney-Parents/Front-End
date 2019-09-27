@@ -7,7 +7,7 @@ const UserCard = styled.div`
     width: 500px;
     height: 20vh;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column wrap;
     justify-content: space-evenly;
     background: white;
     border-radius: 10px;
@@ -26,13 +26,13 @@ function User(props) {
     const request = props.user
 
     return (
-        <Link to={ `/dashboard/users/${request.id}`}>
+        <Link to={ `/dashboard/users/${request.id}`} style={{color: 'black'}}>
         <UserCard>
             <h1>{request.title}</h1>
             <div className="information">
-                <span>{request.full_name}</span>
-                <span>{request.location}</span>
-                <span>{request.meeting_time}</span>
+                <p>{`Name: ${request.full_name}`}</p>
+                <p>{`Location: ${request.location}`}</p>
+                <p>{`Date: ${request.meeting_time}`}</p>
                 <p>{request.comment}</p>
             </div>
             {/* <button onClick={() => {
