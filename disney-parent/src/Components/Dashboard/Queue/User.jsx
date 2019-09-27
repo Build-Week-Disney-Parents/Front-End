@@ -4,8 +4,11 @@ import { Link, Route } from 'react-router-dom';
 
 
 const UserCard = styled.div`
-    width: 80%;
-    height: 50vh;
+    width: 500px;
+    height: 20vh;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
     background: white;
     border-radius: 10px;
     padding: 10px;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import SwitchUser from './SwitchUser';
 import { Field, withFormik, Form } from 'formik';
@@ -38,13 +38,19 @@ const SubmitButton = styled.button`
     `
 
 
-const VolunteerForm = ({
-    values,
-    errors,
-    touched,
-    isSubmitting,
 
-}) => {
+const VolunteerForm = (props) => {
+    const forward = () => props.history.push('/dashboard');
+    console.log(props.status)
+    useEffect(() => {
+        if (props.status) {
+        forward();
+    }},[props.status])
+
+
+
+
+
     return(
         <>
         <button>
@@ -53,12 +59,12 @@ const VolunteerForm = ({
         <Form>
             <Wrapper>
                 <div>
-                    <h2>Please fill out form to be a volunteer!</h2>
-                    <div>
+                    <h2 style={{color: 'white'}}>Got a pass up for grabs? Share with other parents!</h2>
+                    <div style={{color: 'white'}}>
                         Name: 
-                        <Field type="text" name="title" placeholder="title" />
+                        <Input type="text" name="title" placeholder="title" />
                     </div>
-                    <div>
+                    <div style={{color: 'white'}}>
                         Select a Pass: 
                         <Field component="select" name="request_type">
                             <option value="" disabled>Select Type:</option>
@@ -66,7 +72,7 @@ const VolunteerForm = ({
                             <option value="childcare">Childcare</option>
                         </Field>
                     </div>
-                    <div>
+                    <div style={{color: 'white'}}>
                         Select a Park: 
                         <Field component="select" name="location">
                             <option value="" disabled>Select Park:</option>
@@ -78,11 +84,11 @@ const VolunteerForm = ({
                         </Field>
                     </div>
                 </div>
-                <div>
+                <div style={{color: 'white'}}>
                         Meeting: 
-                        <Field type="text" name="meeting_time"  placeholder='Meeting Time'/>
+                        <Input type="text" name="meeting_time"  placeholder='Meeting Time'/>
                 </div>
-                <SubmitButton disabled={isSubmitting}>Submit</SubmitButton>
+                <SubmitButton disabled={props.isSubmitting}>Submit</SubmitButton>
             </Wrapper>
         </Form>
         </>

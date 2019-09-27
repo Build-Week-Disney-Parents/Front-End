@@ -36,7 +36,7 @@ function App() {
       <Route exact path='/' render={props => <Login {...props} />} />
       <Route path='/signup' render={props => <Signup {...props} />} />
       <Route exact path='/dashboard' render={props => <Queue {...props} users={users} />} />
-      <Route path='/volunteer-dashboard' component={Vform} />
+  <Route path='/volunteer-dashboard' render={props => <Vform {...props} />} />
       <Route exact path='/dashboard/users/:id' 
                        render={ (props) => 
                        <UserCards {...props} 

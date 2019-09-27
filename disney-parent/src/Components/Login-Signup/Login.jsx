@@ -55,7 +55,6 @@ const Login = (props) => {
     const pageHistory = () => {
         props.history.push('/dashboard')
     }
-
     useEffect(() => {
         if (props.status) {
         setValues([...values, props.status])

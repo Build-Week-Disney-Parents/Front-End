@@ -79,7 +79,10 @@ const fade = useSpring({opacity: 1, from: {opacity: 0}})
                        <UserCards {...props} 
                               user={{...users.find(user => user.id == props.match.params.id)}}
                               buttonState={buttonState}
-                              setButtonState={setButtonState}/>} />
+                              setButtonState={setButtonState}/>} 
+                              users={users}
+                              
+                              />
             </div>
         </section>
     )
