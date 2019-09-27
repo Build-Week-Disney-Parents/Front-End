@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Form, Field, withFormik } from 'formik';
 import * as yup from 'yup';
 import styled from 'styled-components';
-import { primary1 } from '../Styles';
 import API from '../../Utilities/API';
 
 
@@ -11,10 +10,6 @@ import API from '../../Utilities/API';
         width: 400px;
         text-align: center;
         margin: 0 auto;
-    `
-    const Title = styled.h1`
-        font-size: 3rem;
-        font-weight: 300;
     `
     const SubmitButton = styled.button`
         padding: 10px 0;

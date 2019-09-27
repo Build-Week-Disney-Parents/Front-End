@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import User from './User';
 import styled from 'styled-components';
 
@@ -27,11 +27,11 @@ function QueueCard(props) {
     const parks = props.parkState
    
    
-    if (parks == 'All Parks') {
+    if (parks === 'All Parks') {
         return (
             <User user={request}/>
         )
-    } else if (parks != request.location) {
+    } else if (parks !== request.location) {
         return (
             <UserCard style={{display: 'none'}}>
                 <h1>{request.title}</h1>

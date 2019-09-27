@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import SwitchUser from './SwitchUser';
 import { Field, withFormik, Form } from 'formik';
 import { primary1 } from '../Styles';
 import * as yup from 'yup';

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const UserCard = styled.div`
@@ -35,14 +35,6 @@ function User(props) {
                 <p>{`Date: ${request.meeting_time}`}</p>
                 <p>{request.comment}</p>
             </div>
-            {/* <button onClick={() => {
-                    if (props.buttonState !== true) {
-                        props.setButtonState(true);
-                    } else {
-                        props.setButtonState(false);
-                    }
-                }}>Add Comment</button>
-            {props.buttonState === false ? <Comment style={{display: 'none'}} /> : <Comment request={request} />} */}
         </UserCard>
         </Link>
 

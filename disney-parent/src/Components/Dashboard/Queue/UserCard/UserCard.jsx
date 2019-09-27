@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import User from '../User';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Comment from './AddComment';
 import ChatBox from './ChatBox';

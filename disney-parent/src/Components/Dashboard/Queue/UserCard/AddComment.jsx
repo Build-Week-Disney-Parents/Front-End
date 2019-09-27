@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Field, withFormik, Form } from 'formik';
-import { primary1 } from '../../../Styles';
 import * as yup from 'yup';
 import API from '../../../../Utilities/API';
 

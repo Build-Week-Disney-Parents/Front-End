@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSpring, animated } from 'react-spring';
-import Axios from 'axios';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 import SwitchUser from '../SwitchUser';
 import QueueCard from './QueueCard';
@@ -53,8 +52,7 @@ const buttonText = [
 const [parkState, setParkState] = useState('All Parks');
 const [buttonState, setButtonState] = useState(false);
 
-// usestate for triggering the animation
-const [isToggled, setToggle] = useState(false);
+
 
 // animation
 const fade = useSpring({opacity: 1, from: {opacity: 0}})
@@ -77,7 +75,7 @@ const fade = useSpring({opacity: 1, from: {opacity: 0}})
                 <Route exact path='/dashboard/users/:id' 
                        render={ (props) => 
                        <UserCards {...props} 
-                              user={{...users.find(user => user.id == props.match.params.id)}}
+                              user={{...users.find(user => user.id === props.match.params.id)}}
                               buttonState={buttonState}
                               setButtonState={setButtonState}/>} 
                               users={users}
