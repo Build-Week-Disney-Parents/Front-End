@@ -23,6 +23,7 @@ function User(props) {
     const request = props.user
 
     return (
+        <Link to={ `/dashboard/users/${request.id}`}>
         <UserCard>
             <h1>{request.title}</h1>
             <div className="information">
@@ -40,6 +41,7 @@ function User(props) {
                 }}>Add Comment</button>
             {props.buttonState === false ? <Comment style={{display: 'none'}} /> : <Comment request={request} />}
         </UserCard>
+        </Link>
 
     )
 }

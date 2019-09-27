@@ -26,16 +26,7 @@ const UserWrapper = styled(animated.div)`
 `
 
 
-
-
-
-
-
-
 function Queue(props) {
-
-
-    // title, description, meeting_time, request_type, location
 const[users, setUsers] = useState([
     
 ]);
@@ -80,11 +71,12 @@ const fade = useSpring({opacity: 1, from: {opacity: 0}})
                 
                 <UserWrapper style={fade}>
                     {users.map(user => (
-                        <Link to={ `/dashboard/users/${user.id}`}>
-                             <QueueCard key={user.id} user={user} parkState={parkState} buttonState={buttonState} setButtonState={setButtonState} />
-                        </Link>
+                     <QueueCard key={user.id} user={user} parkState={parkState} buttonState={buttonState} setButtonState={setButtonState} />
                 ))}
                 </UserWrapper>
+                <Route exact path='/dashboard/users/:id' 
+                       render={ (props) => 
+                       <User {...props} user={{...users.find(user => user.id == props.match.params.id)}} />} />
             </div>
         </section>
     )
