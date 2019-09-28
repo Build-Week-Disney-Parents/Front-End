@@ -13,6 +13,7 @@ const BtnWrapper = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 `
 
 const UserWrapper = styled(animated.div)`
@@ -64,7 +65,7 @@ const fade = useSpring({opacity: 1, from: {opacity: 0}})
                     {buttonText.map(text => (
                         <Parks key={text.id} text={text} setParkState={setParkState} user={users} />
                     ))}
-                    <SwitchUser />
+                <SwitchUser />
                 </BtnWrapper>
                 
                 <UserWrapper style={fade}>

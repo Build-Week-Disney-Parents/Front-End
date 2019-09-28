@@ -20,6 +20,9 @@ const Input = styled(Field)`
 
 const Wrapper = styled.div`
         width: 400px;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: left;
         text-align: center;
         margin: 0 auto;
     `
@@ -35,6 +38,33 @@ const SubmitButton = styled.button`
         margin-top: 10px;
         border-radius: 10px;
     `
+
+const StyledDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s ease-in-out;
+    background: ${primary1};
+    height: 50px;
+    width: 200px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+
+    :hover {
+        transform: scale(1.1)
+    }
+`
+const StyledLink = styled(Link)`
+    font-size: 1.2rem;
+    color: white;
+
+    :hover {
+        color: white;
+    }
+`
+const StyledSpan = styled.span`
+
+`
 
 
 
@@ -52,15 +82,14 @@ const VolunteerForm = (props) => {
 
     return(
         <>
-        <button>
-            <Link to='/dashboard'>Back to User</Link>
-        </button>
+        <StyledDiv>
+            <StyledLink to='/dashboard'>Back to User</StyledLink>
+        </StyledDiv>
         <Form>
             <Wrapper>
                 <div>
                     <h2 style={{color: 'white'}}>Got a pass up for grabs? Share with other parents!</h2>
                     <div style={{color: 'white'}}>
-                        Name: 
                         <Input type="text" name="title" placeholder="title" />
                     </div>
                     <div style={{color: 'white'}}>
@@ -84,7 +113,6 @@ const VolunteerForm = (props) => {
                     </div>
                 </div>
                 <div style={{color: 'white'}}>
-                        Meeting: 
                         <Input type="text" name="meeting_time"  placeholder='Meeting Time'/>
                 </div>
                 <SubmitButton disabled={props.isSubmitting}>Submit</SubmitButton>
