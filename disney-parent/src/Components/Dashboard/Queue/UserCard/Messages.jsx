@@ -1,6 +1,7 @@
 import React from 'react'
 
 function Messages(props) {
+    console.log(props)
     return (
         <div>
             <p>{props.chat.message}</p>

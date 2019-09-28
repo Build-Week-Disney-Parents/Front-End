@@ -20,7 +20,7 @@ function Comment (props) {
         setComment({message: ''});
 
     }
-    console.log(props)
+   
     return (
         <div>
             <form onSubmit={onSubmit}>
