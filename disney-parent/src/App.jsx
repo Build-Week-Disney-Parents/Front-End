@@ -37,7 +37,7 @@ function App() {
       <Route exact path='/dashboard/users/:id' 
                        render={ (props) => 
                        <UserCards {...props} 
-                              user={{...users.find(user => user.id === props.match.params.id)}}
+                              user={{...users.filter(user => user.id === props.match.params.id)}}
                               />} />
     </div>
   

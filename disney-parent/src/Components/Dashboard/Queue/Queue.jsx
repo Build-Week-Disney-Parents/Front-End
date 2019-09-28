@@ -21,7 +21,7 @@ const UserWrapper = styled(animated.div)`
     flex-flow: row wrap;
     justify-content: space-evenly;
     width: 100%;
-    margin-top: 40px;
+    margin-top: 20px;
     
 `
 
@@ -76,7 +76,7 @@ const fade = useSpring({opacity: 1, from: {opacity: 0}})
                 <Route exact path='/dashboard/users/:id' 
                        render={ (props) => 
                        <UserCards {...props} 
-                              user={{...users.find(user => user.id === props.match.params.id)}}
+                              user={{...users.filter(user => user.id === props.match.params.id)}}
                               buttonState={buttonState}
                               setButtonState={setButtonState}/>} 
                               users={users}

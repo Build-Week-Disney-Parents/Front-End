@@ -24,9 +24,10 @@ const UserCard = styled.div`
 
 function User(props) {
     const request = props.user
+    console.log(props)
 
     return (
-        <Link to={ `/dashboard/users/${request.id}`} style={{color: 'black'}}>
+        <Link to={ `/dashboard/users/${request.id}`} style={{color: 'black'}} users={request}>
         <UserCard>
             <h1>{request.title}</h1>
             <div className="information">

@@ -44,7 +44,7 @@ const StyledLink = styled(Link)`
 
 const UserCards = (props) => {
     const request = props.user
-    console.log(props.match.params.id)
+    console.log(props)
     const requestID = props.match.params.id;
 
     const [chat, setChat] = useState([])
