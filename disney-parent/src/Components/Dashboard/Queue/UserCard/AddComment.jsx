@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { Field, withFormik, Form } from 'formik';
-import { primary1 } from '../../../Styles';
 import * as yup from 'yup';
 import API from '../../../../Utilities/API';
 
@@ -18,25 +16,35 @@ function Comment (props) {
         e.preventDefault();
         props.addMessage(comment.message);
         setComment({message: ''});
-
     }
-   
+    
     return (
         <div>
-            <form onSubmit={onSubmit}>
-                <input 
+            <Form>
+                <Field
                     type="text" 
-                    name="message" 
+                    name="body" 
                     placeholder="Type Here"
-                    value={comment.message}
-                    onChange={onChange} />
-
+                />
                 <button type="submit">Submit Comment</button>
-            </form>
+            </Form>
         </div>
     )
 }
 
 
 
-export default Comment
+export default withFormik({
+    mapPropsToValues: (values) => {
+        return {
+            body: values.body || ''
+        }
+    },
+    handleSubmit: (values, { setStatus, setSubmitting, requestID }) => {
+        API.post("/comments", {request_id: requestID, body: values.body})
+        .then((res) => {
+            console.log(res)
+        })
+    }
+    
+})(Comment)

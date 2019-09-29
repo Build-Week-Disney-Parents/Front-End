@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import SwitchUser from './SwitchUser';
 import { Field, withFormik, Form } from 'formik';
 import { primary1 } from '../Styles';
 import * as yup from 'yup';
@@ -21,6 +20,9 @@ const Input = styled(Field)`
 
 const Wrapper = styled.div`
         width: 400px;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: left;
         text-align: center;
         margin: 0 auto;
     `
@@ -37,28 +39,60 @@ const SubmitButton = styled.button`
         border-radius: 10px;
     `
 
+const StyledDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s ease-in-out;
+    background: ${primary1};
+    height: 50px;
+    width: 200px;
+    border-radius: 10px;
+    margin-bottom: 40px;
 
-const VolunteerForm = ({
-    values,
-    errors,
-    touched,
-    isSubmitting,
+    :hover {
+        transform: scale(1.1)
+    }
+`
+const StyledLink = styled(Link)`
+    font-size: 1.2rem;
+    color: white;
 
-}) => {
+    :hover {
+        color: white;
+    }
+`
+const StyledSpan = styled.span`
+
+`
+
+
+
+const VolunteerForm = (props) => {
+    const forward = () => props.history.push('/dashboard');
+    console.log(props.status)
+    useEffect(() => {
+        if (props.status) {
+        forward();
+    }},[props.status])
+
+
+
+
+
     return(
         <>
-        <button>
-            <Link to='/dashboard'>Back to User</Link>
-        </button>
+        <StyledDiv>
+            <StyledLink to='/dashboard'>Back to User</StyledLink>
+        </StyledDiv>
         <Form>
             <Wrapper>
                 <div>
-                    <h2>Please fill out form to be a volunteer!</h2>
-                    <div>
-                        Name: 
-                        <Field type="text" name="title" placeholder="title" />
+                    <h2 style={{color: 'white'}}>Got a pass up for grabs? Share with other parents!</h2>
+                    <div style={{color: 'white'}}>
+                        <Input type="text" name="title" placeholder="title" />
                     </div>
-                    <div>
+                    <div style={{color: 'white'}}>
                         Select a Pass: 
                         <Field component="select" name="request_type">
                             <option value="" disabled>Select Type:</option>
@@ -66,7 +100,7 @@ const VolunteerForm = ({
                             <option value="childcare">Childcare</option>
                         </Field>
                     </div>
-                    <div>
+                    <div style={{color: 'white'}}>
                         Select a Park: 
                         <Field component="select" name="location">
                             <option value="" disabled>Select Park:</option>
@@ -78,11 +112,10 @@ const VolunteerForm = ({
                         </Field>
                     </div>
                 </div>
-                <div>
-                        Meeting: 
-                        <Field type="text" name="meeting_time"  placeholder='Meeting Time'/>
+                <div style={{color: 'white'}}>
+                        <Input type="text" name="meeting_time"  placeholder='Meeting Time'/>
                 </div>
-                <SubmitButton disabled={isSubmitting}>Submit</SubmitButton>
+                <SubmitButton disabled={props.isSubmitting}>Submit</SubmitButton>
             </Wrapper>
         </Form>
         </>

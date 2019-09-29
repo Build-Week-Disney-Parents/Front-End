@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const UserCard = styled.div`
-    width: 80%;
-    height: 50vh;
+    width: 500px;
+    height: 20vh;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
     background: white;
     border-radius: 10px;
     padding: 10px;
@@ -21,25 +24,18 @@ const UserCard = styled.div`
 
 function User(props) {
     const request = props.user
+    console.log(props)
 
     return (
-        <Link to={ `/dashboard/users/${request.id}`}>
+        <Link to={ `/dashboard/users/${request.id}`} style={{color: 'black'}} users={request}>
         <UserCard>
             <h1>{request.title}</h1>
             <div className="information">
-                <span>{request.full_name}</span>
-                <span>{request.location}</span>
-                <span>{request.meeting_time}</span>
+                <p>{`Name: ${request.full_name}`}</p>
+                <p>{`Location: ${request.location}`}</p>
+                <p>{`Date: ${request.meeting_time}`}</p>
                 <p>{request.comment}</p>
             </div>
-            {/* <button onClick={() => {
-                    if (props.buttonState !== true) {
-                        props.setButtonState(true);
-                    } else {
-                        props.setButtonState(false);
-                    }
-                }}>Add Comment</button>
-            {props.buttonState === false ? <Comment style={{display: 'none'}} /> : <Comment request={request} />} */}
         </UserCard>
         </Link>
 

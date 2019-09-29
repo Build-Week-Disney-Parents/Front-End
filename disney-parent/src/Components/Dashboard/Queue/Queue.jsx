@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSpring, animated } from 'react-spring';
-import Axios from 'axios';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 import SwitchUser from '../SwitchUser';
 import QueueCard from './QueueCard';
@@ -14,6 +13,7 @@ const BtnWrapper = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 `
 
 const UserWrapper = styled(animated.div)`
@@ -21,7 +21,7 @@ const UserWrapper = styled(animated.div)`
     flex-flow: row wrap;
     justify-content: space-evenly;
     width: 100%;
-    margin-top: 40px;
+    margin-top: 20px;
     
 `
 
@@ -53,8 +53,7 @@ const buttonText = [
 const [parkState, setParkState] = useState('All Parks');
 const [buttonState, setButtonState] = useState(false);
 
-// usestate for triggering the animation
-const [isToggled, setToggle] = useState(false);
+
 
 // animation
 const fade = useSpring({opacity: 1, from: {opacity: 0}})
@@ -66,7 +65,7 @@ const fade = useSpring({opacity: 1, from: {opacity: 0}})
                     {buttonText.map(text => (
                         <Parks key={text.id} text={text} setParkState={setParkState} user={users} />
                     ))}
-                    <SwitchUser />
+                <SwitchUser />
                 </BtnWrapper>
                 
                 <UserWrapper style={fade}>
@@ -77,9 +76,12 @@ const fade = useSpring({opacity: 1, from: {opacity: 0}})
                 <Route exact path='/dashboard/users/:id' 
                        render={ (props) => 
                        <UserCards {...props} 
-                              user={{...users.find(user => user.id == props.match.params.id)}}
+                              user={{...users.filter(user => user.id === props.match.params.id)}}
                               buttonState={buttonState}
-                              setButtonState={setButtonState}/>} />
+                              setButtonState={setButtonState}/>} 
+                              users={users}
+                              
+                              />
             </div>
         </section>
     )

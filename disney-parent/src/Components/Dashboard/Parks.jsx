@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button, Card, Icon } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 
 
 const ParkBtn = styled.button`
@@ -22,7 +22,7 @@ const ParkBtn = styled.button`
 
 function Parks(props) {
     const showText = props.text
-    const parks = props.user.location
+    
         return (
             <div>
                 <Button.Group>
