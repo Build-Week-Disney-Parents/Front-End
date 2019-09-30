@@ -73,7 +73,7 @@ const fade = useSpring({opacity: 1, from: {opacity: 0}})
                      <QueueCard key={user.id} user={user} parkState={parkState} buttonState={buttonState} setButtonState={setButtonState} />
                 ))}
                 </UserWrapper>
-                <Route exact path='/dashboard/users/:id' 
+                {/* <Route exact path='/dashboard/users/:id' 
                        render={ (props) => 
                        <UserCards {...props} 
                               user={{...users.filter(user => user.id === props.match.params.id)}}
@@ -81,7 +81,7 @@ const fade = useSpring({opacity: 1, from: {opacity: 0}})
                               setButtonState={setButtonState}/>} 
                               users={users}
                               
-                              />
+                              /> */}
             </div>
         </section>
     )

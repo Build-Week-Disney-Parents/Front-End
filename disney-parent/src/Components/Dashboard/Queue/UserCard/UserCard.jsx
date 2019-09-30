@@ -43,9 +43,9 @@ const StyledLink = styled(Link)`
 
 
 const UserCards = (props) => {
-    const request = props.user
-    console.log(props)
+    
     const requestID = props.match.params.id;
+    console.log(props.users)
 
     const [chat, setChat] = useState([])
 
@@ -85,16 +85,16 @@ const UserCards = (props) => {
                 <StyledLink to='/dashboard'>Back to User</StyledLink>
             </StyledDiv>
             <UserCard>
-            <h1>{request.title}</h1>
+            <h1>{props.users.title}</h1>
                 <div className="information">
-                    <p>{`Passholder: ${request.full_name}`}</p>
-                    <p>{`Pass Type: ${request.request_type}`}</p>
-                    <p>{`Park Permitted: ${request.location}`}</p>
-                    <p>{`Date Available: ${request.meeting_time}`}</p>
+                    <p>{`Passholder: ${props.users.full_name}`}</p>
+                    <p>{`Pass Type: ${props.users.request_type}`}</p>
+                    <p>{`Park Permitted: ${props.users.location}`}</p>
+                    <p>{`Date Available: ${props.users.meeting_time}`}</p>
                     <p>{chat}</p>
                 </div>
             <div>
-                <ChatBox request={request} chat={chat} delMessage={delMessage} userID={props.match.params.id}/>
+                <ChatBox request={props.users} chat={chat} delMessage={delMessage} userID={props.match.params.id}/>
             </div>
                 <Comment requestID={props.match.params.id} />
         </UserCard>

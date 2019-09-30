@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://18d1ad09.ngrok.io",
+  baseURL: "https://afternoon-waters-31026.herokuapp.com/",
   headers: {
     token: `${localStorage.getItem("token")}`
   },

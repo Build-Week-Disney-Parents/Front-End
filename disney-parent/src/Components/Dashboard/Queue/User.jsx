@@ -24,7 +24,7 @@ const UserCard = styled.div`
 
 function User(props) {
     const request = props.user
-    console.log(props)
+    console.log(request)
 
     return (
         <Link to={ `/dashboard/users/${request.id}`} style={{color: 'black'}} users={request}>
